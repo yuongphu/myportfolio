@@ -7,219 +7,198 @@
     <style>
         :root {
             --bg-white: #ffffff;
-            --grid-line: #f0f0f0; /* Subtle light gray lines */
-            --text-main: #1a1a1a; /* Deep charcoal, almost black */
+            --grid-line: #efefef;
+            --text-main: #111111;
             --text-dim: #666666;
             --accent-blue: #87CEEB;
-            --section-bg: #fafafa;
+            --hover-bg: #f8fdff;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { 
             background-color: var(--bg-white); 
-            font-family: 'Inter', -apple-system, sans-serif; 
+            font-family: 'Inter', sans-serif; 
             color: var(--text-main);
-            line-height: 1.5;
+            overflow-x: hidden;
         }
 
-        /* LIGHT GRID BACKGROUND */
-        body::before {
-            content: "";
+        /* ANIMATED GRID BACKGROUND */
+        .bg-grid {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
-            background-image: radial-gradient(var(--grid-line) 1px, transparent 1px);
-            background-size: 30px 30px;
+            background-image: linear-gradient(var(--grid-line) 1px, transparent 1px),
+                              linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
+            background-size: 50px 50px;
             z-index: -1;
+            mask-image: radial-gradient(circle at center, black, transparent 80%);
         }
 
+        /* NAVIGATION WITH BLUR */
         nav {
             display: flex;
             justify-content: space-between;
             align-items: center;
             padding: 1.5rem 5%;
             border-bottom: 1px solid var(--grid-line);
-            background: rgba(255, 255, 255, 0.8);
-            backdrop-filter: blur(12px);
-            position: sticky;
-            top: 0;
-            z-index: 100;
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(15px);
+            position: sticky; top: 0; z-index: 100;
         }
 
-        .logo {
-            font-weight: 800;
-            font-size: 1.2rem;
-            letter-spacing: -0.5px;
-            color: var(--text-main);
-            text-decoration: none;
-        }
-
-        /* HERO SECTION - Airy and White */
+        /* HERO SECTION */
         .hero {
-            padding: 140px 5% 100px 5%;
+            padding: 160px 5% 120px 5%;
             text-align: center;
             border-bottom: 1px solid var(--grid-line);
         }
 
-        .badge {
-            background: #f0f9ff;
-            color: #0369a1; /* Deeper blue for readability on white */
-            padding: 6px 14px;
-            border-radius: 4px;
-            font-size: 0.7rem;
-            font-weight: 700;
-            border: 1px solid #e0f2fe;
-            margin-bottom: 24px;
-            display: inline-block;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
         .hero h1 {
-            font-size: clamp(2.5rem, 8vw, 5rem);
+            font-size: clamp(3rem, 10vw, 6rem);
             font-weight: 800;
-            margin-bottom: 20px;
-            letter-spacing: -2px;
-            color: var(--text-main);
+            letter-spacing: -3px;
+            line-height: 0.9;
+            margin-bottom: 30px;
+            transition: transform 0.3s ease;
         }
 
-        /* PROJECT GRID - White cards with light borders */
+        .hero h1:hover { transform: scale(1.02); }
+
+        /* THE ANIMATED BOXES (Project Cards) */
         .project-container {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
             gap: 1px;
             background-color: var(--grid-line);
-            border-bottom: 1px solid var(--grid-line);
         }
 
         .project-card {
             background-color: var(--bg-white);
             padding: 80px 10%;
-            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+            cursor: pointer;
         }
 
-        .project-card:hover { background-color: var(--section-bg); }
+        /* The "Box" Hover Effect */
+        .project-card::after {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: var(--hover-bg);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: 0;
+        }
+
+        .project-card:hover::after { opacity: 1; }
+
+        .project-card > * { position: relative; z-index: 1; }
 
         .project-image {
             width: 100%;
-            aspect-ratio: 4/3;
-            background: #fff;
+            aspect-ratio: 1;
+            background: #fdfdfd;
             border: 1px solid var(--grid-line);
             margin-bottom: 30px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.03);
-            overflow: hidden;
+            transition: all 0.5s ease;
         }
 
-        .project-image img { width: 100%; height: 100%; object-fit: cover; transition: 0.5s; }
-        .project-card:hover img { transform: scale(1.05); }
+        .project-card:hover .project-image {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(135, 206, 235, 0.15);
+            border-color: var(--accent-blue);
+        }
 
-        /* ABOUT / SKILLS GRID */
+        /* CAPABILITIES HOVER BOXES */
         .about-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 1px;
             background-color: var(--grid-line);
-            border-bottom: 1px solid var(--grid-line);
         }
 
         .about-item {
             background-color: var(--bg-white);
-            padding: 50px;
+            padding: 60px;
+            transition: 0.3s;
         }
 
-        .about-item h3 { font-size: 1rem; margin-bottom: 15px; text-transform: uppercase; letter-spacing: 1px; }
-        .about-item p { color: var(--text-dim); font-size: 0.95rem; }
+        .about-item:hover {
+            background-color: var(--text-main);
+            color: var(--bg-white);
+        }
 
-        /* BUTTONS */
+        /* INTERACTIVE BUTTONS */
         .btn-primary {
             background-color: var(--text-main);
             color: white;
-            padding: 14px 28px;
-            border-radius: 4px;
+            padding: 16px 32px;
+            border-radius: 50px; /* Modern pill shape */
             text-decoration: none;
             font-weight: 600;
-            transition: 0.2s;
+            display: inline-block;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
         }
 
-        .btn-secondary {
-            background-color: white;
-            color: var(--text-main);
-            padding: 14px 28px;
-            border-radius: 4px;
-            text-decoration: none;
-            font-weight: 600;
-            border: 1px solid var(--grid-line);
-        }
-
-        .btn-secondary:hover { border-color: var(--text-main); }
-
-        footer {
-            padding: 100px 5%;
-            background: var(--bg-white);
-            display: flex;
-            justify-content: space-between;
-            border-top: 1px solid var(--grid-line);
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(135, 206, 235, 0.4);
+            background-color: var(--accent-blue);
         }
 
         @media (max-width: 768px) {
             .project-container { grid-template-columns: 1fr; }
-            footer { flex-direction: column; gap: 40px; }
         }
     </style>
 </head>
 <body>
 
+    <div class="bg-grid"></div>
+
     <nav>
-        <a href="#" class="logo">YUONG PHU</a>
-        <a href="mailto:your@email.com" class="btn-primary" style="padding: 10px 20px; font-size: 0.8rem;">CONTACT</a>
+        <a href="#" class="logo" style="letter-spacing: 2px;">YP © 2026</a>
+        <a href="mailto:your@email.com" class="btn-primary" style="padding: 10px 25px; font-size: 0.8rem;">Let's Chat</a>
     </nav>
 
     <header class="hero">
-        <div class="badge">Designer Portfolio 2026</div>
-        <h1>Publication & <br><span style="color: var(--accent-blue);">Graphics Design.</span></h1>
-        <p>I specialize in structured visual systems for education and corporate branding. Currently based in [Your Location].</p>
-        <div style="display: flex; gap: 15px; justify-content: center;">
-            <a href="phu_portfolio.pdf" class="btn-primary">Download Portfolio</a>
-            <a href="#work" class="btn-secondary">View Work</a>
-        </div>
+        <h1 id="hero-text">YUONG PHU</h1>
+        <p style="color: var(--text-dim); margin-bottom: 40px; font-size: 1.1rem;">Graphic & Publication Designer</p>
+        <a href="#work" class="btn-primary">Explore Projects</a>
     </header>
 
     <div class="project-container" id="work">
         <div class="project-card">
-            <div class="project-image"><img src="science.jpg" alt="Science Experiments"></div>
-            <h3>Educational Publication</h3>
-            <p>Level D Science Curriculum focusing on Energy Waves and Biological Systems.</p>
+            <div class="project-image"><img src="science.jpg" alt="" style="width:100%; height:100%; object-fit:cover;"></div>
+            <h3 style="font-size: 1.5rem; margin-bottom: 10px;">Sonlight Science</h3>
+            <p style="color: var(--text-dim);">Level D: Educational Layout & Design</p>
         </div>
+
         <div class="project-card">
-            <div class="project-image"><img src="empire.jpg" alt="Empire Rolloffs"></div>
-            <h3>Corporate Identity</h3>
-            <p>Empire Rolloffs brand development and logistics visual system.</p>
+            <div class="project-image"><img src="empire.jpg" alt="" style="width:100%; height:100%; object-fit:cover;"></div>
+            <h3 style="font-size: 1.5rem; margin-bottom: 10px;">Empire Rolloffs</h3>
+            <p style="color: var(--text-dim);">Identity & Visual Strategy</p>
         </div>
     </div>
 
     <div class="about-grid">
         <div class="about-item">
-            <h3 style="color: var(--accent-blue);">01. Layout</h3>
-            <p>Mastery of grid systems, typography, and multi-page document structure for print and digital.</p>
+            <h4 style="color: var(--accent-blue); margin-bottom: 10px;">Layout</h4>
+            <p>Structuring information with precision and clarity.</p>
         </div>
         <div class="about-item">
-            <h3 style="color: var(--accent-blue);">02. Branding</h3>
-            <p>Vector-based logo design and identity development for industrial and real estate sectors.</p>
+            <h4 style="color: var(--accent-blue); margin-bottom: 10px;">Branding</h4>
+            <p>Visualizing corporate values through timeless design.</p>
         </div>
         <div class="about-item">
-            <h3 style="color: var(--accent-blue);">03. Assets</h3>
-            <p>Production of marketing collateral, icons, and specialized graphics for corporate use.</p>
+            <h4 style="color: var(--accent-blue); margin-bottom: 10px;">Vision</h4>
+            <p>Combining educational goals with high-end graphics.</p>
         </div>
     </div>
 
-    <footer>
-        <div>
-            <p style="font-weight: 800;">YP.DESIGN</p>
-            <p style="color: var(--text-dim); font-size: 0.8rem;">Available for freelance opportunities.</p>
-        </div>
-        <div style="text-align: right; color: var(--text-dim); font-size: 0.8rem;">
-            &copy; 2026 Yuong Phu<br>
-            Designed for Clarity.
-        </div>
+    <footer style="padding: 100px 5%; text-align: center; border-top: 1px solid var(--grid-line);">
+        <p style="font-size: 0.8rem; color: var(--text-dim);">© 2026 Yuong Phu. Designed for high performance.</p>
     </footer>
 
 </body>
