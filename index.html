@@ -3,213 +3,254 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Yuong Phu | Publication & Graphics Designer</title>
+    <title>Yuong Phu | Designer</title>
     <style>
         :root {
-            --white: #ffffff;
-            --skyblue: #87CEEB;
-            --darkgray: #333333; /* Your requested dark gray */
-            --mediumgray: #4A4A4A;
-            --lightgray: #f9f9f9;
+            --bg-dark: #0f1115;
+            --card-gray: #1a1d23;
+            --border-gray: #2d3139;
+            --text-main: #ffffff;
+            --text-dim: #94a3b8;
+            --accent-blue: #87CEEB;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { 
-            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; 
-            line-height: 1.6; 
-            color: var(--darkgray);
-            background-color: var(--white);
+            background-color: var(--bg-dark); 
+            font-family: 'Inter', -apple-system, sans-serif; 
+            color: var(--text-main);
+            line-height: 1.5;
+            overflow-x: hidden;
         }
 
-        /* NAVIGATION */
+        /* GRID BACKGROUND EFFECT */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-image: radial-gradient(var(--border-gray) 1px, transparent 1px);
+            background-size: 40px 40px;
+            z-index: -1;
+        }
+
         nav {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 1.5rem 10%;
-            background: var(--white);
+            padding: 1.5rem 5%;
+            border-bottom: 1px solid var(--border-gray);
+            background: rgba(15, 17, 21, 0.8);
+            backdrop-filter: blur(12px);
             position: sticky;
             top: 0;
-            z-index: 1000;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            z-index: 100;
         }
+
         .logo {
-            font-size: 1.8rem;
-            font-weight: 900;
-            color: var(--darkgray);
-            letter-spacing: -1px;
+            font-weight: 800;
+            font-size: 1.2rem;
+            letter-spacing: 1px;
+            color: var(--text-main);
+            text-decoration: none;
         }
-        .logo span { color: var(--skyblue); }
-        nav ul { display: flex; list-style: none; }
-        nav ul li { margin-left: 30px; }
-        nav ul li a { text-decoration: none; color: var(--darkgray); font-weight: 600; font-size: 0.9rem; text-transform: uppercase; }
 
-        /* HERO - Darker gray text to pop against white */
+        /* HERO SECTION */
         .hero {
-            height: 70vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            padding: 0 10%;
-            background-color: var(--white);
+            padding: 120px 5% 80px 5%;
+            text-align: center;
+            border-bottom: 1px solid var(--border-gray);
         }
-        .hero h1 { font-size: 4rem; line-height: 1.1; margin-bottom: 20px; color: var(--darkgray); }
-        .hero p { font-size: 1.4rem; color: #666; max-width: 700px; border-left: 4px solid var(--skyblue); padding-left: 20px; }
 
-        /* PORTFOLIO SECTION (White Background) */
-        .container { padding: 5rem 10%; }
-        .section-title { font-size: 2rem; margin-bottom: 3rem; text-transform: uppercase; letter-spacing: 3px; }
+        .badge {
+            background: rgba(135, 206, 235, 0.1);
+            color: var(--accent-blue);
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            border: 1px solid rgba(135, 206, 235, 0.3);
+            margin-bottom: 24px;
+            display: inline-block;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
 
-        .grid {
+        .hero h1 {
+            font-size: clamp(2.5rem, 8vw, 5rem);
+            font-weight: 800;
+            margin-bottom: 20px;
+            letter-spacing: -2px;
+        }
+
+        .hero p {
+            color: var(--text-dim);
+            max-width: 650px;
+            margin: 0 auto 40px auto;
+            font-size: 1.1rem;
+        }
+
+        /* SECTION HEADERS */
+        .section-header {
+            padding: 60px 5% 20px 5%;
+            border-bottom: 1px solid var(--border-gray);
+        }
+        .section-header h2 { font-size: 0.8rem; text-transform: uppercase; color: var(--accent-blue); letter-spacing: 2px; }
+
+        /* PROJECT GRID */
+        .project-container {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 3rem;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 1px;
+            background-color: var(--border-gray);
+            border-bottom: 1px solid var(--border-gray);
         }
-        .card { transition: transform 0.4s ease; background: var(--white); }
-        .card:hover { transform: translateY(-10px); }
-        .card-img {
+
+        .project-card {
+            background-color: var(--bg-dark);
+            padding: 60px 10%;
+            transition: background 0.4s;
+        }
+
+        .project-card:hover { background-color: var(--card-gray); }
+
+        .project-image {
             width: 100%;
-            aspect-ratio: 4/3;
-            background-color: var(--lightgray);
-            border: 1px solid #eee;
+            aspect-ratio: 1;
+            background: #111;
+            border: 1px solid var(--border-gray);
+            margin-bottom: 30px;
             overflow: hidden;
         }
-        .card-img img { width: 100%; height: 100%; object-fit: cover; }
-        .card-content { padding: 1.5rem 0; }
-        .card-content h3 { font-size: 1.2rem; margin-bottom: 5px; color: var(--darkgray); }
-        .card-content p { color: #888; font-size: 0.9rem; }
 
-        /* EXPERIENCE & SKILLS (Dark Gray Background) */
-        /* This eliminates the "too much white" feel */
-        .skills-experience {
-            background-color: var(--darkgray);
-            color: var(--white);
-            padding: 5rem 10%;
-        }
-        .skills-grid {
+        .project-image img { width: 100%; height: 100%; object-fit: cover; opacity: 0.8; transition: 0.4s; }
+        .project-card:hover img { opacity: 1; transform: scale(1.03); }
+
+        /* SKILLS / ABOUT SECTION */
+        .about-grid {
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1px;
+            background-color: var(--border-gray);
+            border-bottom: 1px solid var(--border-gray);
         }
-        .skill-item { margin-bottom: 2rem; }
-        .skill-item h3 { color: var(--skyblue); margin-bottom: 10px; text-transform: uppercase; font-size: 0.9rem; }
-        .skill-list { list-style: none; font-size: 1.1rem; }
 
-        /* CONTACT SECTION */
-        .contact { background: var(--lightgray); padding: 5rem 10%; text-align: center; }
-        .btn {
-            display: inline-block;
-            background: var(--darkgray);
-            color: var(--white);
-            padding: 15px 40px;
+        .about-item {
+            background-color: var(--bg-dark);
+            padding: 40px;
+        }
+
+        .about-item h3 { font-size: 1.1rem; margin-bottom: 15px; color: var(--text-main); }
+        .about-item p { color: var(--text-dim); font-size: 0.9rem; }
+
+        /* BUTTONS */
+        .btn-group { display: flex; gap: 15px; justify-content: center; }
+        
+        .btn-primary {
+            background-color: var(--text-main);
+            color: var(--bg-dark);
+            padding: 14px 28px;
+            border-radius: 4px;
             text-decoration: none;
-            font-weight: bold;
-            margin-top: 30px;
-            transition: 0.3s;
+            font-weight: 600;
+            transition: 0.2s;
         }
-        .btn:hover { background: var(--skyblue); }
 
-        footer { text-align: center; padding: 3rem; background: var(--darkgray); color: #777; font-size: 0.8rem; }
+        .btn-secondary {
+            background-color: transparent;
+            color: var(--text-main);
+            padding: 14px 28px;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 600;
+            border: 1px solid var(--border-gray);
+            transition: 0.2s;
+        }
+
+        .btn-secondary:hover { background: var(--border-gray); }
+
+        footer {
+            padding: 80px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            flex-wrap: wrap;
+            gap: 40px;
+        }
+
+        .footer-brand h4 { margin-bottom: 10px; }
+        .footer-brand p { color: var(--text-dim); font-size: 0.8rem; max-width: 200px; }
+        
+        @media (max-width: 768px) {
+            .project-container { grid-template-columns: 1fr; }
+            footer { flex-direction: column; text-align: center; align-items: center; }
+        }
     </style>
 </head>
 <body>
 
     <nav>
-        <div class="logo">Y<span>P</span></div>
-        <ul>
-            <li><a href="#work">Portfolio</a></li>
-            <li><a href="#about">Experience</a></li>
-            <li><a href="#contact">Contact</a></li>
-        </ul>
+        <a href="#" class="logo">YP.DESIGN</a>
+        <a href="mailto:your@email.com" class="btn-primary" style="padding: 8px 16px; font-size: 0.8rem;">Contact</a>
     </nav>
 
     <header class="hero">
+        <div class="badge">Available for New Projects</div>
         <h1>Yuong Phu</h1>
-        <p>Expert Publication & Graphics Designer focusing on educational curriculum [cite: 3, 4] and corporate brand identity[cite: 19, 27].</p>
+        <p>Publication & Graphics Designer. Turning complex educational material and brand values into structured visual systems.</p>
+        <div class="btn-group">
+            <a href="mailto:your@email.com" class="btn-primary">Start a Project</a>
+            <a href="phu_portfolio.pdf" target="_blank" class="btn-secondary">View Full PDF</a>
+        </div>
     </header>
 
-    <section class="container" id="work">
-        <h2 class="section-title">Selected Work</h2>
-        <div class="grid">
-            <div class="card">
-                <div class="card-img">
-                    <img src="science.jpg" alt="Level D Science Experiments">
-                </div>
-                <div class="card-content">
-                    <h3>Level D Science Experiments</h3>
-                    <p>Publication design for Energy Waves and Biological Systems[cite: 5].</p>
-                </div>
-            </div>
-
-            <div class="card">
-                <div class="card-img">
-                    <img src="empire.jpg" alt="Empire Rolloffs Logo">
-                </div>
-                <div class="card-content">
-                    <h3>Empire Rolloffs</h3>
-                    <p>Logo development and visual identity for industrial logistics[cite: 19, 21].</p>
-                </div>
-            </div>
-
-            <div class="card">
-                <div class="card-img">
-                    <img src="stproperties.jpg" alt="S.T. Properties Branding">
-                </div>
-                <div class="card-content">
-                    <h3>S.T. Properties</h3>
-                    <p>Residential and Commercial real estate iconography[cite: 27, 28].</p>
-                </div>
-            </div>
+    <div class="section-header"><h2>Selected Works</h2></div>
+    
+    <div class="project-container">
+        <div class="project-card">
+            <div class="project-image"><img src="science.jpg" alt="Level D Science"></div>
+            <h3>Level D Science</h3>
+            <p>Curriculum design for Energy Waves and Biological Systems. Focused on clean typography for student engagement.</p>
         </div>
-    </section>
 
-    <section class="skills-experience" id="about">
-        <div class="skills-grid">
-            <div>
-                <h2 style="font-size: 2.5rem; margin-bottom: 20px;">Design Expertise</h2>
-                <p style="color: #bbb; margin-bottom: 30px;">Specializing in turning complex information into clean, accessible visual narratives.</p>
-                
-                <div class="skill-item">
-                    <h3>01. Publication Design</h3>
-                    <ul class="skill-list">
-                        <li>Educational Curriculum [cite: 2, 4]</li>
-                        <li>Layout & Typography</li>
-                        <li>Instructional Manuals</li>
-                    </ul>
-                </div>
-            </div>
-
-            <div style="padding-top: 6rem;">
-                <div class="skill-item">
-                    <h3>02. Brand Identity</h3>
-                    <ul class="skill-list">
-                        <li>Logo Development [cite: 21, 25]</li>
-                        <li>Vector Iconography [cite: 27]</li>
-                        <li>Corporate Stationery</li>
-                    </ul>
-                </div>
-
-                <div class="skill-item">
-                    <h3>03. Technical Proficiencies</h3>
-                    <ul class="skill-list">
-                        <li>Adobe InDesign & Photoshop</li>
-                        <li>Adobe Illustrator</li>
-                        <li>Digital Photography [cite: 25]</li>
-                    </ul>
-                </div>
-            </div>
+        <div class="project-card">
+            <div class="project-image"><img src="empire.jpg" alt="Empire Rolloffs"></div>
+            <h3>Empire Rolloffs</h3>
+            <p>Full identity suite for industrial logistics. Designed for high visibility and professional reliability.</p>
         </div>
-    </section>
+    </div>
 
-    <section class="contact" id="contact">
-        <h2 style="font-size: 2.5rem;">Ready to start a project?</h2>
-        <p>I am currently available for publication and graphics design freelance opportunities.</p>
-        <a href="mailto:your-email@example.com" class="btn">EMAIL ME</a>
-    </section>
+    <div class="section-header"><h2>Capabilities</h2></div>
+
+    <div class="about-grid">
+        <div class="about-item">
+            <h3>Publication Design</h3>
+            <p>Expertise in multi-page layouts, educational curriculum, and instructional manuals using Adobe InDesign.</p>
+        </div>
+        <div class="about-item">
+            <h3>Visual Identity</h3>
+            <p>Creating scalable vector logos and brand guidelines that maintain consistency across all media.</p>
+        </div>
+        <div class="about-item">
+            <h3>Graphics & Assets</h3>
+            <p>Developing custom iconography and marketing materials for residential and commercial real estate.</p>
+        </div>
+        <div class="about-item">
+            <h3>Photography</h3>
+            <p>Professional brand photography and asset creation through JR. Javier Photography.</p>
+        </div>
+    </div>
 
     <footer>
-        &copy; 2026 YUONG PHU. ALL RIGHTS RESERVED.
+        <div class="footer-brand">
+            <h4>YUONG PHU</h4>
+            <p>Graphics & Publication Designer based in [Your Location].</p>
+        </div>
+        <div style="color: var(--text-dim); font-size: 0.8rem;">
+            &copy; 2026. All rights reserved. <br>
+            Designed & Coded by YP.
+        </div>
     </footer>
 
 </body>
 </html>
+
