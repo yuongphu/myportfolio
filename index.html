@@ -6,30 +6,29 @@
     <title>Yuong Phu | Designer</title>
     <style>
         :root {
-            --bg-dark: #0f1115;
-            --card-gray: #1a1d23;
-            --border-gray: #2d3139;
-            --text-main: #ffffff;
-            --text-dim: #94a3b8;
+            --bg-white: #ffffff;
+            --grid-line: #f0f0f0; /* Subtle light gray lines */
+            --text-main: #1a1a1a; /* Deep charcoal, almost black */
+            --text-dim: #666666;
             --accent-blue: #87CEEB;
+            --section-bg: #fafafa;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { 
-            background-color: var(--bg-dark); 
+            background-color: var(--bg-white); 
             font-family: 'Inter', -apple-system, sans-serif; 
             color: var(--text-main);
             line-height: 1.5;
-            overflow-x: hidden;
         }
 
-        /* GRID BACKGROUND EFFECT */
+        /* LIGHT GRID BACKGROUND */
         body::before {
             content: "";
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
-            background-image: radial-gradient(var(--border-gray) 1px, transparent 1px);
-            background-size: 40px 40px;
+            background-image: radial-gradient(var(--grid-line) 1px, transparent 1px);
+            background-size: 30px 30px;
             z-index: -1;
         }
 
@@ -38,8 +37,8 @@
             justify-content: space-between;
             align-items: center;
             padding: 1.5rem 5%;
-            border-bottom: 1px solid var(--border-gray);
-            background: rgba(15, 17, 21, 0.8);
+            border-bottom: 1px solid var(--grid-line);
+            background: rgba(255, 255, 255, 0.8);
             backdrop-filter: blur(12px);
             position: sticky;
             top: 0;
@@ -49,26 +48,26 @@
         .logo {
             font-weight: 800;
             font-size: 1.2rem;
-            letter-spacing: 1px;
+            letter-spacing: -0.5px;
             color: var(--text-main);
             text-decoration: none;
         }
 
-        /* HERO SECTION */
+        /* HERO SECTION - Airy and White */
         .hero {
-            padding: 120px 5% 80px 5%;
+            padding: 140px 5% 100px 5%;
             text-align: center;
-            border-bottom: 1px solid var(--border-gray);
+            border-bottom: 1px solid var(--grid-line);
         }
 
         .badge {
-            background: rgba(135, 206, 235, 0.1);
-            color: var(--accent-blue);
+            background: #f0f9ff;
+            color: #0369a1; /* Deeper blue for readability on white */
             padding: 6px 14px;
-            border-radius: 20px;
-            font-size: 0.75rem;
-            font-weight: 600;
-            border: 1px solid rgba(135, 206, 235, 0.3);
+            border-radius: 4px;
+            font-size: 0.7rem;
+            font-weight: 700;
+            border: 1px solid #e0f2fe;
             margin-bottom: 24px;
             display: inline-block;
             text-transform: uppercase;
@@ -80,74 +79,60 @@
             font-weight: 800;
             margin-bottom: 20px;
             letter-spacing: -2px;
+            color: var(--text-main);
         }
 
-        .hero p {
-            color: var(--text-dim);
-            max-width: 650px;
-            margin: 0 auto 40px auto;
-            font-size: 1.1rem;
-        }
-
-        /* SECTION HEADERS */
-        .section-header {
-            padding: 60px 5% 20px 5%;
-            border-bottom: 1px solid var(--border-gray);
-        }
-        .section-header h2 { font-size: 0.8rem; text-transform: uppercase; color: var(--accent-blue); letter-spacing: 2px; }
-
-        /* PROJECT GRID */
+        /* PROJECT GRID - White cards with light borders */
         .project-container {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
             gap: 1px;
-            background-color: var(--border-gray);
-            border-bottom: 1px solid var(--border-gray);
+            background-color: var(--grid-line);
+            border-bottom: 1px solid var(--grid-line);
         }
 
         .project-card {
-            background-color: var(--bg-dark);
-            padding: 60px 10%;
-            transition: background 0.4s;
+            background-color: var(--bg-white);
+            padding: 80px 10%;
+            transition: all 0.3s ease;
         }
 
-        .project-card:hover { background-color: var(--card-gray); }
+        .project-card:hover { background-color: var(--section-bg); }
 
         .project-image {
             width: 100%;
-            aspect-ratio: 1;
-            background: #111;
-            border: 1px solid var(--border-gray);
+            aspect-ratio: 4/3;
+            background: #fff;
+            border: 1px solid var(--grid-line);
             margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.03);
             overflow: hidden;
         }
 
-        .project-image img { width: 100%; height: 100%; object-fit: cover; opacity: 0.8; transition: 0.4s; }
-        .project-card:hover img { opacity: 1; transform: scale(1.03); }
+        .project-image img { width: 100%; height: 100%; object-fit: cover; transition: 0.5s; }
+        .project-card:hover img { transform: scale(1.05); }
 
-        /* SKILLS / ABOUT SECTION */
+        /* ABOUT / SKILLS GRID */
         .about-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 1px;
-            background-color: var(--border-gray);
-            border-bottom: 1px solid var(--border-gray);
+            background-color: var(--grid-line);
+            border-bottom: 1px solid var(--grid-line);
         }
 
         .about-item {
-            background-color: var(--bg-dark);
-            padding: 40px;
+            background-color: var(--bg-white);
+            padding: 50px;
         }
 
-        .about-item h3 { font-size: 1.1rem; margin-bottom: 15px; color: var(--text-main); }
-        .about-item p { color: var(--text-dim); font-size: 0.9rem; }
+        .about-item h3 { font-size: 1rem; margin-bottom: 15px; text-transform: uppercase; letter-spacing: 1px; }
+        .about-item p { color: var(--text-dim); font-size: 0.95rem; }
 
         /* BUTTONS */
-        .btn-group { display: flex; gap: 15px; justify-content: center; }
-        
         .btn-primary {
             background-color: var(--text-main);
-            color: var(--bg-dark);
+            color: white;
             padding: 14px 28px;
             border-radius: 4px;
             text-decoration: none;
@@ -156,101 +141,86 @@
         }
 
         .btn-secondary {
-            background-color: transparent;
+            background-color: white;
             color: var(--text-main);
             padding: 14px 28px;
             border-radius: 4px;
             text-decoration: none;
             font-weight: 600;
-            border: 1px solid var(--border-gray);
-            transition: 0.2s;
+            border: 1px solid var(--grid-line);
         }
 
-        .btn-secondary:hover { background: var(--border-gray); }
+        .btn-secondary:hover { border-color: var(--text-main); }
 
         footer {
-            padding: 80px 5%;
+            padding: 100px 5%;
+            background: var(--bg-white);
             display: flex;
             justify-content: space-between;
-            align-items: flex-start;
-            flex-wrap: wrap;
-            gap: 40px;
+            border-top: 1px solid var(--grid-line);
         }
 
-        .footer-brand h4 { margin-bottom: 10px; }
-        .footer-brand p { color: var(--text-dim); font-size: 0.8rem; max-width: 200px; }
-        
         @media (max-width: 768px) {
             .project-container { grid-template-columns: 1fr; }
-            footer { flex-direction: column; text-align: center; align-items: center; }
+            footer { flex-direction: column; gap: 40px; }
         }
     </style>
 </head>
 <body>
 
     <nav>
-        <a href="#" class="logo">YP.DESIGN</a>
-        <a href="mailto:your@email.com" class="btn-primary" style="padding: 8px 16px; font-size: 0.8rem;">Contact</a>
+        <a href="#" class="logo">YUONG PHU</a>
+        <a href="mailto:your@email.com" class="btn-primary" style="padding: 10px 20px; font-size: 0.8rem;">CONTACT</a>
     </nav>
 
     <header class="hero">
-        <div class="badge">Available for New Projects</div>
-        <h1>Yuong Phu</h1>
-        <p>Publication & Graphics Designer. Turning complex educational material and brand values into structured visual systems.</p>
-        <div class="btn-group">
-            <a href="mailto:your@email.com" class="btn-primary">Start a Project</a>
-            <a href="phu_portfolio.pdf" target="_blank" class="btn-secondary">View Full PDF</a>
+        <div class="badge">Designer Portfolio 2026</div>
+        <h1>Publication & <br><span style="color: var(--accent-blue);">Graphics Design.</span></h1>
+        <p>I specialize in structured visual systems for education and corporate branding. Currently based in [Your Location].</p>
+        <div style="display: flex; gap: 15px; justify-content: center;">
+            <a href="phu_portfolio.pdf" class="btn-primary">Download Portfolio</a>
+            <a href="#work" class="btn-secondary">View Work</a>
         </div>
     </header>
 
-    <div class="section-header"><h2>Selected Works</h2></div>
-    
-    <div class="project-container">
+    <div class="project-container" id="work">
         <div class="project-card">
-            <div class="project-image"><img src="science.jpg" alt="Level D Science"></div>
-            <h3>Level D Science</h3>
-            <p>Curriculum design for Energy Waves and Biological Systems. Focused on clean typography for student engagement.</p>
+            <div class="project-image"><img src="science.jpg" alt="Science Experiments"></div>
+            <h3>Educational Publication</h3>
+            <p>Level D Science Curriculum focusing on Energy Waves and Biological Systems.</p>
         </div>
-
         <div class="project-card">
             <div class="project-image"><img src="empire.jpg" alt="Empire Rolloffs"></div>
-            <h3>Empire Rolloffs</h3>
-            <p>Full identity suite for industrial logistics. Designed for high visibility and professional reliability.</p>
+            <h3>Corporate Identity</h3>
+            <p>Empire Rolloffs brand development and logistics visual system.</p>
         </div>
     </div>
 
-    <div class="section-header"><h2>Capabilities</h2></div>
-
     <div class="about-grid">
         <div class="about-item">
-            <h3>Publication Design</h3>
-            <p>Expertise in multi-page layouts, educational curriculum, and instructional manuals using Adobe InDesign.</p>
+            <h3 style="color: var(--accent-blue);">01. Layout</h3>
+            <p>Mastery of grid systems, typography, and multi-page document structure for print and digital.</p>
         </div>
         <div class="about-item">
-            <h3>Visual Identity</h3>
-            <p>Creating scalable vector logos and brand guidelines that maintain consistency across all media.</p>
+            <h3 style="color: var(--accent-blue);">02. Branding</h3>
+            <p>Vector-based logo design and identity development for industrial and real estate sectors.</p>
         </div>
         <div class="about-item">
-            <h3>Graphics & Assets</h3>
-            <p>Developing custom iconography and marketing materials for residential and commercial real estate.</p>
-        </div>
-        <div class="about-item">
-            <h3>Photography</h3>
-            <p>Professional brand photography and asset creation through JR. Javier Photography.</p>
+            <h3 style="color: var(--accent-blue);">03. Assets</h3>
+            <p>Production of marketing collateral, icons, and specialized graphics for corporate use.</p>
         </div>
     </div>
 
     <footer>
-        <div class="footer-brand">
-            <h4>YUONG PHU</h4>
-            <p>Graphics & Publication Designer based in [Your Location].</p>
+        <div>
+            <p style="font-weight: 800;">YP.DESIGN</p>
+            <p style="color: var(--text-dim); font-size: 0.8rem;">Available for freelance opportunities.</p>
         </div>
-        <div style="color: var(--text-dim); font-size: 0.8rem;">
-            &copy; 2026. All rights reserved. <br>
-            Designed & Coded by YP.
+        <div style="text-align: right; color: var(--text-dim); font-size: 0.8rem;">
+            &copy; 2026 Yuong Phu<br>
+            Designed for Clarity.
         </div>
     </footer>
 
 </body>
 </html>
-
