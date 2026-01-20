@@ -6,156 +6,160 @@
     <title>Yuong Phu | Designer</title>
     <style>
         :root {
-            --bg-dark: #0f1115;      /* Deep Charcoal */
-            --card-gray: #1a1d23;    /* Slightly lighter gray for boxes */
-            --border: #2d3139;
-            --white: #ffffff;
+            --bg-dark: #0f1115;      /* Hero Background */
+            --bg-white: #ffffff;     /* SaaS Body Background */
             --accent-blue: #87CEEB;  /* Sky Blue */
-            --text-dim: #94a3b8;
+            --text-dark: #111827;
+            --text-dim: #64748b;
+            --border-light: #f1f5f9;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        
         body { 
-            background-color: var(--bg-dark); 
-            font-family: 'Inter', -apple-system, sans-serif; 
-            color: var(--white);
+            font-family: 'Inter', sans-serif; 
+            background-color: var(--bg-white);
+            color: var(--text-dark);
             line-height: 1.6;
-            overflow-x: hidden;
         }
 
-        /* FADE IN ANIMATION */
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
+        /* --- DARK HEADER SECTION --- */
+        .header-section {
+            background-color: var(--bg-dark);
+            color: white;
+            padding: 120px 5% 100px 5%;
+            text-align: center;
+            border-bottom: 1px solid #2d3139;
         }
 
-        .animate { animation: fadeInUp 0.8s ease forwards; }
+        .header-section h1 {
+            font-size: clamp(2.5rem, 8vw, 5rem);
+            font-weight: 800;
+            letter-spacing: -2px;
+            line-height: 1.1;
+            margin-bottom: 20px;
+        }
+
+        .header-section h1 span { color: var(--accent-blue); }
+        
+        .header-section p {
+            color: #94a3b8;
+            max-width: 600px;
+            margin: 0 auto 40px auto;
+            font-size: 1.1rem;
+        }
+
+        /* --- WHITE SAAS BODY --- */
+        .content-container {
+            background-color: var(--bg-white);
+            padding: 80px 5%;
+        }
+
+        .section-label {
+            display: inline-block;
+            color: var(--accent-blue);
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 20px;
+        }
+
+        /* PROJECT BOXES */
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 2rem;
+            margin-bottom: 100px;
+        }
+
+        .project-card {
+            background: #fff;
+            border: 1px solid var(--border-light);
+            border-radius: 16px;
+            padding: 24px;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+        }
+
+        .project-card:hover {
+            transform: translateY(-12px);
+            border-color: var(--accent-blue);
+            box-shadow: 0 20px 25px -5px rgba(135, 206, 235, 0.15);
+        }
+
+        .project-image {
+            width: 100%;
+            aspect-ratio: 16/9;
+            background: #f8fafc;
+            border-radius: 8px;
+            margin-bottom: 24px;
+            overflow: hidden;
+            border: 1px solid var(--border-light);
+        }
+
+        .project-image img {
+            width: 100%; height: 100%; object-fit: cover; transition: 0.5s;
+        }
+
+        .project-card:hover img { transform: scale(1.05); }
+
+        /* CAPABILITIES HOVER BOXES (WHITE MODE) */
+        .about-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .about-item {
+            background-color: #fff;
+            padding: 40px;
+            border: 1px solid var(--border-light);
+            border-radius: 12px;
+            transition: 0.3s ease;
+        }
+
+        .about-item:hover {
+            background-color: #f0f9ff;
+            border-color: var(--accent-blue);
+        }
+
+        .about-item h3 {
+            font-size: 1.1rem;
+            margin-bottom: 12px;
+            color: var(--text-dark);
+        }
 
         /* NAVIGATION */
         nav {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 1.5rem 5%;
-            background: rgba(15, 17, 21, 0.9);
+            padding: 1.2rem 5%;
+            background: rgba(15, 17, 21, 0.95);
             backdrop-filter: blur(10px);
             position: sticky; top: 0; z-index: 100;
-            border-bottom: 1px solid var(--border);
         }
 
-        .logo { font-weight: 800; font-size: 1.2rem; color: var(--white); text-decoration: none; }
-        .logo span { color: var(--accent-blue); }
-
-        /* HERO SECTION */
-        .hero {
-            padding: 150px 5% 100px 5%;
-            text-align: center;
-        }
-
-        .hero h1 {
-            font-size: clamp(3rem, 10vw, 6rem);
-            font-weight: 900;
-            letter-spacing: -3px;
-            line-height: 1;
-            margin-bottom: 20px;
-        }
-
-        /* Hero Text Coloring */
-        .hero h1 .white { color: var(--white); }
-        .hero h1 .blue { color: var(--accent-blue); }
-
-        .hero p {
-            color: var(--text-dim);
-            max-width: 600px;
-            margin: 0 auto 40px auto;
-            font-size: 1.2rem;
-        }
-
-        /* DYNAMIC BOXES (PROJECTS) */
-        .project-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-            gap: 2rem;
-            padding: 0 5% 100px 5%;
-        }
-
-        .project-card {
-            background: var(--card-gray);
-            border: 1px solid var(--border);
-            border-radius: 12px;
-            padding: 2rem;
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            cursor: pointer;
-        }
-
-        .project-card:hover {
-            transform: translateY(-15px);
-            border-color: var(--accent-blue);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
-        }
-
-        .project-image {
-            width: 100%;
-            aspect-ratio: 16/9;
-            background: #111;
-            border-radius: 6px;
-            margin-bottom: 20px;
-            overflow: hidden;
-        }
-
-        .project-image img {
-            width: 100%; height: 100%; object-fit: cover; opacity: 0.7; transition: 0.3s;
-        }
-
-        .project-card:hover img { opacity: 1; }
-
-        /* CAPABILITIES HOVER BOXES */
-        .capabilities {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 1.5rem;
-            padding: 100px 5%;
-            background: #0a0c10; /* Slightly darker section */
-        }
-
-        .cap-box {
-            padding: 3rem;
-            border: 1px solid var(--border);
-            border-radius: 12px;
-            transition: 0.3s;
-        }
-
-        .cap-box:hover {
-            background: var(--accent-blue);
-            color: var(--bg-dark);
-        }
-
-        .cap-box h3 { margin-bottom: 15px; text-transform: uppercase; font-size: 0.9rem; letter-spacing: 1px; }
-
-        /* BUTTONS */
         .btn-blue {
             background-color: var(--accent-blue);
             color: var(--bg-dark);
-            padding: 16px 32px;
+            padding: 12px 24px;
             border-radius: 8px;
             text-decoration: none;
             font-weight: 700;
-            display: inline-block;
             transition: 0.3s;
         }
 
-        .btn-blue:hover {
-            background-color: var(--white);
-            transform: scale(1.05);
-        }
+        .btn-blue:hover { opacity: 0.9; transform: translateY(-2px); }
 
         footer {
             padding: 60px 5%;
             text-align: center;
-            border-top: 1px solid var(--border);
+            background-color: #f9fafb;
             color: var(--text-dim);
             font-size: 0.8rem;
+            border-top: 1px solid var(--border-light);
         }
 
         @media (max-width: 768px) {
@@ -166,50 +170,55 @@
 <body>
 
     <nav>
-        <a href="#" class="logo">YUONG <span>PHU</span></a>
-        <a href="mailto:your@email.com" class="btn-blue" style="padding: 10px 20px; font-size: 0.8rem;">Contact</a>
+        <div style="color: white; font-weight: 800;">YP.DESIGN</div>
+        <a href="mailto:your@email.com" class="btn-blue" style="font-size: 0.8rem;">Hire Me</a>
     </nav>
 
-    <header class="hero animate">
-        <h1>
-            <span class="white">Publication &</span><br>
-            <span class="blue">Graphics Design.</span>
-        </h1>
-        <p>Structuring educational content and corporate brand identity with technical precision.</p>
-        <a href="#work" class="btn-blue">View Portfolio</a>
+    <header class="header-section">
+        <h1>Publication &<br><span>Graphics Design.</span></h1>
+        <p>Expertly structured visual systems for educational materials and corporate brand identities.</p>
+        <a href="#work" class="btn-blue">Explore My Work</a>
     </header>
 
-    <section id="work" class="project-grid animate" style="animation-delay: 0.2s;">
-        <div class="project-card">
-            <div class="project-image"><img src="science.jpg" alt="Science Experiments"></div>
-            <h3 style="color: var(--accent-blue);">Sonlight Science</h3>
-            <p style="color: var(--text-dim);">Multi-page Publication Layout</p>
+    <main class="content-container">
+        
+        <span class="section-label" id="work">Featured Projects</span>
+        
+        <div class="project-grid">
+            <div class="project-card">
+                <div class="project-image"><img src="science.jpg" alt="Science Experiments"></div>
+                <h3>Level D Science</h3>
+                <p style="color: var(--text-dim);">Comprehensive Publication Layout for Educational Curriculum.</p>
+            </div>
+
+            <div class="project-card">
+                <div class="project-image"><img src="empire.jpg" alt="Empire Rolloffs"></div>
+                <h3>Empire Rolloffs</h3>
+                <p style="color: var(--text-dim);">Identity Development and Industrial Logistics Branding.</p>
+            </div>
         </div>
 
-        <div class="project-card">
-            <div class="project-image"><img src="empire.jpg" alt="Empire Rolloffs"></div>
-            <h3 style="color: var(--accent-blue);">Empire Rolloffs</h3>
-            <p style="color: var(--text-dim);">Identity & Visual Strategy</p>
+        <span class="section-label">Capabilities</span>
+        
+        <div class="about-grid">
+            <div class="about-item">
+                <h3>Publication Design</h3>
+                <p style="color: var(--text-dim);">Grid systems, typography, and layout for multi-page educational spreads.</p>
+            </div>
+            <div class="about-item">
+                <h3>Brand Strategy</h3>
+                <p style="color: var(--text-dim);">Visualizing brand values through scalable vector systems and logos.</p>
+            </div>
+            <div class="about-item">
+                <h3>Digital Assets</h3>
+                <p style="color: var(--text-dim);">Production-ready marketing materials and iconography for commercial use.</p>
+            </div>
         </div>
-    </section>
 
-    <section class="capabilities">
-        <div class="cap-box">
-            <h3>Layout</h3>
-            <p>Precise typesetting and grid systems for complex educational materials.</p>
-        </div>
-        <div class="cap-box">
-            <h3>Identity</h3>
-            <p>Creating scalable vector branding that works across print and digital media.</p>
-        </div>
-        <div class="cap-box">
-            <h3>Assets</h3>
-            <p>Developing corporate marketing materials and specialized iconography.</p>
-        </div>
-    </section>
+    </main>
 
     <footer>
-        &copy; 2026 Yuong Phu. Built for high impact.
+        &copy; 2026 Yuong Phu. Designed with precision.
     </footer>
 
 </body>
