@@ -17,16 +17,14 @@
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        
         html { scroll-behavior: smooth; }
 
         body { 
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; 
+            font-family: 'Inter', -apple-system, sans-serif; 
             background-color: var(--bg-white);
             color: var(--text-dark);
             line-height: 1.6;
             -webkit-font-smoothing: antialiased;
-            text-rendering: optimizeLegibility;
         }
 
         /* --- NAVIGATION --- */
@@ -43,46 +41,62 @@
             height: 80px; 
         }
 
-        .nav-logo { height: 45px; width: auto; object-fit: contain; }
+        .nav-logo { height: 40px; width: auto; }
 
         /* --- HERO SECTION --- */
         .header-section {
             background-color: var(--bg-dark);
             color: white;
-            padding: clamp(100px, 15vh, 200px) 5%;
+            padding: clamp(100px, 15vh, 180px) 5%;
             text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* Container for Logo + Name */
+        .brand-main {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px; /* Space between logo and name */
+            margin-bottom: 10px;
+        }
+
+        .header-logo {
+            height: 0.8em; /* Matches the cap-height of the text */
+            width: auto;
         }
 
         .header-section h1 { 
-            font-size: clamp(3rem, 10vw, 6.5rem); 
+            font-size: clamp(2.5rem, 8vw, 5.5rem); 
             font-weight: 600;
-            letter-spacing: -0.03em; 
-            line-height: 0.85;
-            margin-bottom: 10px;
+            letter-spacing: 0.05em; /* Increased Kerning */
+            line-height: 1;
             text-transform: uppercase;
+            white-space: nowrap;
         }
 
-        .header-section h1 span { 
+        .header-section .sub-header { 
             display: block; 
             color: var(--accent-blue); 
-            font-size: clamp(0.75rem, 2vw, 1.25rem); 
+            font-size: clamp(0.7rem, 1.8vw, 1.1rem); 
             font-weight: 300;
             text-transform: uppercase;
-            letter-spacing: 0.9em; 
-            margin-right: -0.9em;
-            margin-top: 25px;
+            letter-spacing: 0.88em; 
+            margin-right: -0.88em; /* Centers accurately despite letter spacing */
+            margin-top: 15px;
+            width: 100%;
         }
 
         .header-section p { 
             color: #94a3b8; 
-            max-width: 550px; 
+            max-width: 600px; 
             margin: 40px auto; 
-            font-size: 1.15rem; 
-            font-weight: 400;
-            opacity: 0.9;
+            font-size: 1.1rem; 
         }
 
-        /* --- LAYOUT CONTAINERS --- */
+        /* --- MAIN CONTENT --- */
         .content-container { 
             max-width: 1400px;
             margin: 0 auto;
@@ -102,8 +116,8 @@
         /* --- PROJECT GRID --- */
         .project-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
-            gap: 3rem;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2.5rem;
             margin-bottom: 120px;
         }
 
@@ -119,12 +133,12 @@
         .project-card:hover { 
             transform: translateY(-8px); 
             border-color: #e2e8f0;
-            box-shadow: 0 30px 60px -12px rgba(0,0,0,0.05), 0 18px 36px -18px rgba(0,0,0,0.05);
+            box-shadow: 0 30px 60px -12px rgba(0,0,0,0.05);
         }
 
         .project-image-box { 
             width: 100%; 
-            aspect-ratio: 1.618 / 1; /* Golden Ratio for standard aesthetic */
+            aspect-ratio: 16/9;
             background: #ffffff; 
             border-radius: 6px; 
             margin-bottom: 24px; 
@@ -135,112 +149,80 @@
             justify-content: center;
         }
         
-        .project-image-box img { width: 85%; height: 85%; object-fit: contain; transition: var(--transition-standard); }
-        .project-card:hover img { transform: scale(1.03); }
+        .project-image-box img { width: 80%; height: 80%; object-fit: contain; }
 
-        .project-card h3 { font-size: 1.4rem; font-weight: 600; margin-bottom: 8px; }
+        .placeholder-box { background: #f9fafb; display: flex; align-items: center; justify-content: center; color: #cbd5e1; font-size: 0.8rem; letter-spacing: 2px; }
 
         /* --- CAPABILITIES --- */
         .skills-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 2rem;
+            margin-bottom: 120px;
         }
 
         .skill-item {
-            padding: 48px;
+            padding: 40px;
             border: 1px solid var(--border-light);
             border-radius: 12px;
             transition: var(--transition-standard);
         }
 
-        .skill-item:hover {
-            border-color: var(--accent-blue);
-            box-shadow: 0 10px 30px -10px rgba(135, 206, 235, 0.2);
+        .skill-item h3 { margin-bottom: 16px; font-weight: 600; font-size: 1.2rem; }
+        .skill-item p { color: var(--text-dim); font-size: 0.95rem; }
+
+        /* --- FOOTER --- */
+        footer { 
+            padding: 80px 5% 40px 5%; 
+            background-color: #fcfdfe; 
+            border-top: 1px solid var(--border-light); 
+            text-align: center;
         }
 
-        .skill-item h3 { margin-bottom: 16px; font-weight: 600; }
-        .skill-item p { color: var(--text-dim); line-height: 1.7; }
+        .footer-cta { margin-bottom: 50px; }
+        .footer-cta h2 { font-size: 2rem; margin-bottom: 20px; font-weight: 800; }
 
-        /* --- ACCESSIBLE LIGHTBOX --- */
-        .lightbox {
-            position: fixed;
-            inset: 0;
-            background: #ffffff; 
-            display: none;
-            justify-content: center;
-            align-items: center;
-            z-index: 2000;
-            opacity: 0;
-            transition: opacity 0.4s ease;
-        }
-
-        .lightbox.active { display: flex; opacity: 1; }
-
-        .lightbox-content {
-            width: 90%;
-            height: 85vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .lightbox-content img {
-            max-width: 100%;
-            max-height: 100%;
-            object-fit: contain;
-            background: white;
-            padding: 40px;
-            box-shadow: 0 40px 100px -20px rgba(0,0,0,0.1);
-        }
-
-        .lightbox-close {
-            position: fixed;
-            top: 30px; right: 40px;
-            font-size: 2.5rem; cursor: pointer;
-            z-index: 2001;
+        .social-links { display: flex; justify-content: center; gap: 30px; margin-bottom: 40px; }
+        .social-links a { 
+            color: var(--text-dark); 
+            text-decoration: none; 
+            font-weight: 600; 
+            font-size: 0.8rem; 
+            text-transform: uppercase; 
+            letter-spacing: 1px;
             transition: var(--transition-standard);
         }
-        .lightbox-close:hover { transform: rotate(90deg); color: var(--accent-blue); }
+        .social-links a:hover { color: var(--accent-blue); }
 
-        .nav-arrow {
-            position: absolute;
-            top: 50%; transform: translateY(-50%);
-            padding: 40px; font-size: 3rem; cursor: pointer; z-index: 2005;
-            transition: var(--transition-standard);
-        }
-        .nav-arrow:hover { color: var(--accent-blue); }
-        .arrow-left { left: 20px; }
-        .arrow-right { right: 20px; }
+        .copyright { color: var(--text-dim); font-size: 0.8rem; border-top: 1px solid #eee; padding-top: 30px; }
 
         /* --- BUTTONS --- */
         .btn-blue { 
-            background-color: var(--accent-blue); 
-            color: var(--bg-dark); 
-            padding: 16px 32px; 
-            border-radius: 6px; 
-            text-decoration: none; 
-            font-weight: 600; 
-            transition: var(--transition-standard); 
-            display: inline-block;
-            box-shadow: 0 4px 14px 0 rgba(135, 206, 235, 0.39);
+            background-color: var(--accent-blue); color: var(--bg-dark); 
+            padding: 14px 28px; border-radius: 6px; text-decoration: none; 
+            font-weight: 600; transition: var(--transition-standard); display: inline-block;
         }
-        .btn-blue:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(135, 206, 235, 0.45); background: #98d9f3; }
+        .btn-blue:hover { transform: translateY(-2px); box-shadow: 0 10px 20px rgba(135, 206, 235, 0.3); }
 
-        footer { 
-            padding: 100px 5%; 
-            text-align: center; 
-            background-color: #fcfdfe; 
-            color: var(--text-dim); 
-            border-top: 1px solid var(--border-light); 
-            font-size: 0.9rem;
+        /* --- LIGHTBOX --- */
+        .lightbox {
+            position: fixed; inset: 0; background: #ffffff; 
+            display: none; justify-content: center; align-items: center; z-index: 2000;
+            opacity: 0; transition: opacity 0.4s ease;
         }
+        .lightbox.active { display: flex; opacity: 1; }
+        .lightbox-content { width: 90%; height: 80vh; display: flex; justify-content: center; align-items: center; }
+        .lightbox-content img {
+            max-width: 100%; max-height: 100%; object-fit: contain;
+            background: white; padding: 40px; box-shadow: 0 40px 100px rgba(0,0,0,0.1);
+        }
+        .lightbox-close { position: fixed; top: 30px; right: 40px; font-size: 2.5rem; cursor: pointer; z-index: 2001; }
+        .nav-arrow { position: absolute; top: 50%; transform: translateY(-50%); padding: 40px; font-size: 3rem; cursor: pointer; z-index: 2005; }
 
         @media (max-width: 768px) {
-            .nav-arrow { bottom: 20px; top: auto; transform: none; padding: 20px; }
-            .header-section h1 span { letter-spacing: 0.3em; margin-right: -0.3em; }
-            .project-grid { grid-template-columns: 1fr; }
+            .brand-main { flex-direction: column; gap: 10px; }
+            .header-section .sub-header { letter-spacing: 0.4em; margin-right: -0.4em; }
+            .nav-arrow { bottom: 20px; top: auto; transform: none; }
         }
     </style>
 </head>
@@ -248,18 +230,21 @@
 
     <nav>
         <img src="logo.svg" alt="Yuong Phu Logo" class="nav-logo">
-        <a href="mailto:yuongphu@gmail.com" class="btn-blue" style="padding: 10px 20px; font-size: 0.85rem;">Contact</a>
+        <a href="mailto:yuongphu@gmail.com" class="btn-blue" style="padding: 8px 16px; font-size: 0.8rem;">Contact</a>
     </nav>
 
     <header class="header-section">
-        <h1>Yuong Phu<br><span>Publication & Graphics Designer</span></h1>
-        <p>Strategic visual systems for high-impact educational materials and corporate brand identities.</p>
+        <div class="brand-main">
+            <img src="logo.svg" alt="Logo" class="header-logo">
+            <h1>Yuong Phu</h1>
+        </div>
+        <span class="sub-header">Publication & Graphics Designer</span>
+        <p>Expertly structured visual systems for educational materials and corporate brand identities.</p>
         <a href="#work" class="btn-blue">View Portfolio</a>
     </header>
 
     <main class="content-container">
         <span class="section-label" id="work">Selected Work</span>
-        
         <div class="project-grid">
             <div class="project-card" data-src="science.svg">
                 <div class="project-image-box"><img src="science.svg" alt="Level D Science"></div>
@@ -281,76 +266,36 @@
                 <h3>R. Javier</h3>
                 <p style="color: var(--text-dim);">Typography & Custom Identity</p>
             </div>
+            <div class="project-card">
+                <div class="project-image-box placeholder-box">COMING SOON</div>
+                <h3>Project 1</h3>
+                <p style="color: var(--text-dim);">In Development</p>
+            </div>
+            <div class="project-card">
+                <div class="project-image-box placeholder-box">COMING SOON</div>
+                <h3>Project 2</h3>
+                <p style="color: var(--text-dim);">In Development</p>
+            </div>
         </div>
 
         <span class="section-label">Capabilities</span>
         <div class="skills-grid">
             <div class="skill-item">
-                <h3>Publication</h3>
-                <p>Grid-based layouts for textbooks, manuals, and reports where information hierarchy is paramount.</p>
+                <h3>Publication Design</h3>
+                <p>Grid-based layouts for textbooks and reports where information hierarchy is paramount.</p>
             </div>
             <div class="skill-item">
                 <h3>Visual Identity</h3>
-                <p>Scalable logo systems and brand languages that maintain integrity across print and digital media.</p>
+                <p>Scalable logo systems and brand languages that maintain integrity across print and digital.</p>
             </div>
             <div class="skill-item">
                 <h3>Production</h3>
-                <p>Precise vector execution and print-ready technical specifications for high-volume manufacturing.</p>
+                <p>Precise vector execution and print-ready technical specs for high-volume manufacturing.</p>
             </div>
         </div>
     </main>
 
-    <div class="lightbox" id="lightbox">
-        <span class="lightbox-close" id="closeBtn">&times;</span>
-        <div class="nav-arrow arrow-left" id="prevBtn">&#8249;</div>
-        <div class="lightbox-content">
-            <img src="" id="lightbox-img">
-        </div>
-        <div class="nav-arrow arrow-right" id="nextBtn">&#8250;</div>
-    </div>
-
-    <footer>&copy; 2026 Yuong Phu. Built for performance and precision.</footer>
-
-    <script>
-        const lightbox = document.getElementById('lightbox');
-        const lightboxImg = document.getElementById('lightbox-img');
-        const cards = Array.from(document.querySelectorAll('.project-card'));
-        const closeBtn = document.getElementById('closeBtn');
-        const prevBtn = document.getElementById('prevBtn');
-        const nextBtn = document.getElementById('nextBtn');
-        let currentIndex = 0;
-
-        function showImage(index) {
-            currentIndex = index;
-            const src = cards[currentIndex].getAttribute('data-src');
-            lightboxImg.style.opacity = '0';
-            setTimeout(() => {
-                lightboxImg.src = src;
-                lightboxImg.style.opacity = '1';
-            }, 150);
-            lightbox.style.display = 'flex';
-            setTimeout(() => lightbox.classList.add('active'), 10);
-            document.body.style.overflow = 'hidden';
-        }
-
-        cards.forEach((card, index) => card.addEventListener('click', () => showImage(index)));
-
-        const closeLightbox = () => {
-            lightbox.classList.remove('active');
-            setTimeout(() => lightbox.style.display = 'none', 400);
-            document.body.style.overflow = 'auto';
-        };
-
-        closeBtn.addEventListener('click', closeLightbox);
-        nextBtn.addEventListener('click', (e) => { e.stopPropagation(); currentIndex = (currentIndex + 1) % cards.length; showImage(currentIndex); });
-        prevBtn.addEventListener('click', (e) => { e.stopPropagation(); currentIndex = (currentIndex - 1 + cards.length) % cards.length; showImage(currentIndex); });
-        
-        document.addEventListener('keydown', (e) => {
-            if (!lightbox.classList.contains('active')) return;
-            if (e.key === 'ArrowRight') nextBtn.click();
-            if (e.key === 'ArrowLeft') prevBtn.click();
-            if (e.key === 'Escape') closeLightbox();
-        });
-    </script>
-</body>
-</html>
+    <footer>
+        <div class="footer-cta">
+            <h2>Let's work together.</h2>
+            <a href="mailto:yuong
