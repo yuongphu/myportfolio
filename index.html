@@ -174,4 +174,138 @@
         .arrow-right { right: -100px; }
 
         /* --- FOOTER & BUTTONS --- */
-        .btn-blue { background-color: var(--accent-blue); color: var(--bg-dark); padding:
+        .btn-blue { background-color: var(--accent-blue); color: var(--bg-dark); padding: 12px 24px; border-radius: 8px; text-decoration: none; font-weight: 700; transition: 0.3s; display: inline-block; }
+        footer { padding: 60px 5%; text-align: center; background-color: #f9fafb; color: var(--text-dim); font-size: 0.8rem; border-top: 1px solid var(--border-light); }
+
+        @media (max-width: 1100px) {
+            .nav-arrow { position: fixed; bottom: 20px; top: auto; transform: none; }
+            .arrow-left { left: 20%; }
+            .arrow-right { right: 20%; }
+        }
+        @media (max-width: 768px) {
+            .project-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <a href="#" class="logo-container">
+            <img src="logo.svg" alt="Yuong Phu Logo" class="nav-logo">
+        </a>
+        <a href="mailto:yuongphu@gmail.com" class="btn-blue" style="font-size: 0.8rem;">Hire Me</a>
+    </nav>
+
+    <header class="header-section">
+        <h1>Publication &<br><span>Graphics Designer.</span></h1>
+        <p>Expertly structured visual systems for educational materials and corporate brand identities.</p>
+        <a href="#work" class="btn-blue">Explore My Work</a>
+    </header>
+
+    <main class="content-container">
+        <span class="section-label" id="work">Featured Projects</span>
+        
+        <div class="project-grid" id="gallery">
+            <div class="project-card" data-src="science.svg">
+                <div class="project-image-box"><img src="science.svg" alt="Level D Science"></div>
+                <h3>Level D Science</h3>
+                <p style="color: var(--text-dim);">Comprehensive Publication Layout for Educational Curriculum.</p>
+            </div>
+
+            <div class="project-card" data-src="empire.svg">
+                <div class="project-image-box"><img src="empire.svg" alt="Empire Rolloffs"></div>
+                <h3>Empire Rolloffs</h3>
+                <p style="color: var(--text-dim);">Identity and Brand development.</p>
+            </div>
+
+            <div class="project-card" data-src="stprop.svg">
+                <div class="project-image-box"><img src="stprop.svg" alt="S.T. Properties"></div>
+                <h3>S.T. Properties</h3>
+                <p style="color: var(--text-dim);">Residential & Commercial Real Estate brand strategy.</p>
+            </div>
+
+            <div class="project-card" data-src="rjavier.svg">
+                <div class="project-image-box"><img src="rjavier.svg" alt="R. Javier Photography"></div>
+                <h3>R. Javier Photography</h3>
+                <p style="color: var(--text-dim);">Custom wordmark and brand identity.</p>
+            </div>
+
+            <div class="project-card" data-src="placeholder1.jpg">
+                <div class="project-image-box" style="background: #e2e8f0; display:flex; align-items:center; justify-content:center; color:#94a3b8;">Coming Soon</div>
+                <h3>Project 1</h3>
+                <p style="color: var(--text-dim);">New Case Study in progress.</p>
+            </div>
+
+            <div class="project-card" data-src="placeholder2.jpg">
+                <div class="project-image-box" style="background: #e2e8f0; display:flex; align-items:center; justify-content:center; color:#94a3b8;">Coming Soon</div>
+                <h3>Project 2</h3>
+                <p style="color: var(--text-dim);">New Case Study in progress.</p>
+            </div>
+        </div>
+    </main>
+
+    <div class="lightbox" id="lightbox">
+        <div class="nav-arrow arrow-left" id="prevBtn">&#8249;</div>
+        <div class="lightbox-content">
+            <span class="lightbox-close" id="closeBtn">&times;</span>
+            <img src="" id="lightbox-img">
+        </div>
+        <div class="nav-arrow arrow-right" id="nextBtn">&#8250;</div>
+    </div>
+
+    <footer>&copy; 2026 Yuong Phu. Designed with precision.</footer>
+
+    <script>
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightbox-img');
+        const cards = Array.from(document.querySelectorAll('.project-card'));
+        const closeBtn = document.getElementById('closeBtn');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        let currentIndex = 0;
+
+        function showImage(index) {
+            currentIndex = index;
+            const src = cards[currentIndex].getAttribute('data-src');
+            lightboxImg.src = src;
+            lightbox.classList.add('active');
+            document.body.style.overflow = 'hidden'; // Stop scrolling
+        }
+
+        cards.forEach((card, index) => {
+            card.addEventListener('click', () => showImage(index));
+        });
+
+        closeBtn.addEventListener('click', () => {
+            lightbox.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        });
+
+        nextBtn.addEventListener('click', () => {
+            currentIndex = (currentIndex + 1) % cards.length;
+            showImage(currentIndex);
+        });
+
+        prevBtn.addEventListener('click', () => {
+            currentIndex = (currentIndex - 1 + cards.length) % cards.length;
+            showImage(currentIndex);
+        });
+
+        // Close on clicking background
+        lightbox.addEventListener('click', (e) => {
+            if(e.target === lightbox) {
+                lightbox.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            }
+        });
+
+        // Keyboard support
+        document.addEventListener('keydown', (e) => {
+            if (!lightbox.classList.contains('active')) return;
+            if (e.key === 'ArrowRight') nextBtn.click();
+            if (e.key === 'ArrowLeft') prevBtn.click();
+            if (e.key === 'Escape') closeBtn.click();
+        });
+    </script>
+</body>
+</html>
