@@ -28,30 +28,31 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 0 5%;      /* Remove vertical padding to let height control it */
-            height: 80px;       /* Give the logo a set 'room' to live in */
+            padding: 0 5%;
             background: rgba(15, 17, 21, 0.95);
             backdrop-filter: blur(10px);
             position: sticky; 
             top: 0; 
             z-index: 100;
             border-bottom: 1px solid #2d3139;
+            height: 80px; /* Fixed height to contain the logo */
         }
 
         .logo-container {
             display: flex;
             align-items: center;
             height: 100%;
+            max-width: 150px; /* Prevents the container from growing too wide */
             text-decoration: none;
+            overflow: hidden;
         }
 
         .nav-logo {
-            height: 32px;        /* Force a small height */
-            width: auto;         /* Let the width follow the height */
-            max-height: 100%;    /* Keep it inside the nav bar */
-            object-fit: contain; /* Prevents stretching */
+            height: 40px !important; /* Hard constraint on height */
+            width: auto !important;   /* Proportional width */
+            object-fit: contain;
             display: block;
-            margin: 0;
+            transition: transform 0.3s ease;
         }
 
         .nav-logo:hover {
@@ -83,193 +84,4 @@
             font-size: 1.1rem;
         }
 
-        /* --- WHITE SAAS BODY --- */
-        .content-container {
-            background-color: var(--bg-white);
-            padding: 80px 5%;
-        }
-
-        .section-label {
-            display: inline-block;
-            color: var(--accent-blue);
-            font-size: 0.75rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            margin-bottom: 20px;
-        }
-
-        .project-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-            gap: 2rem;
-            margin-bottom: 100px;
-        }
-
-        .project-card {
-            background: #fff;
-            border: 1px solid var(--border-light);
-            border-radius: 16px;
-            padding: 24px;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
-            text-decoration: none;
-            color: inherit;
-            display: block;
-        }
-
-        .project-card:hover {
-            transform: translateY(-12px);
-            border-color: var(--accent-blue);
-            box-shadow: 0 20px 25px -5px rgba(135, 206, 235, 0.15);
-        }
-
-        .project-image {
-            width: 100%;
-            aspect-ratio: 16/9;
-            background: #f8fafc;
-            border-radius: 8px;
-            margin-bottom: 24px;
-            overflow: hidden;
-            border: 1px solid var(--border-light);
-        }
-
-        .project-image img { 
-            width: 100%; 
-            height: 100%; 
-            object-fit: cover; 
-            transition: 0.5s; 
-        }
-
-        .project-card:hover img { transform: scale(1.05); }
-
-        .project-card h3 {
-            margin-bottom: 8px;
-            font-size: 1.25rem;
-        }
-
-        /* --- CAPABILITIES GRID --- */
-        .about-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 1.5rem;
-        }
-
-        .about-item {
-            background-color: #fff;
-            padding: 40px;
-            border: 1px solid var(--border-light);
-            border-radius: 12px;
-            transition: 0.3s ease;
-        }
-
-        .about-item:hover {
-            background-color: #f0f9ff;
-            border-color: var(--accent-blue);
-        }
-
-        .about-item h3 {
-            margin-bottom: 12px;
-            font-size: 1.1rem;
-        }
-
-        /* --- BUTTONS --- */
-        .btn-blue {
-            background-color: var(--accent-blue);
-            color: var(--bg-dark);
-            padding: 12px 24px;
-            border-radius: 8px;
-            text-decoration: none;
-            font-weight: 700;
-            transition: 0.3s;
-            display: inline-block;
-        }
-
-        .btn-blue:hover {
-            opacity: 0.9;
-            transform: translateY(-2px);
-        }
-
-        footer {
-            padding: 60px 5%;
-            text-align: center;
-            background-color: #f9fafb;
-            color: var(--text-dim);
-            font-size: 0.8rem;
-            border-top: 1px solid var(--border-light);
-        }
-
-        @media (max-width: 768px) {
-            .project-grid { grid-template-columns: 1fr; }
-            .header-section { padding: 100px 5% 80px 5%; }
-        }
-    </style>
-</head>
-<body>
-
-    <nav>
-        <a href="#" class="logo-container">
-            <img src="logo.svg" alt="Yuong Phu Logo" class="nav-logo">
-        </a>
-        <a href="mailto:yuongphu@gmail.com" class="btn-blue" style="font-size: 0.8rem;">Hire Me</a>
-    </nav>
-
-    <header class="header-section">
-        <h1>Publication &<br><span>Graphics Designer.</span></h1>
-        <p>Expertly structured visual systems for educational materials and corporate brand identities.</p>
-        <a href="#work" class="btn-blue">Explore My Work</a>
-    </header>
-
-    <main class="content-container">
-        <span class="section-label" id="work">Featured Projects</span>
-        
-        <div class="project-grid">
-            <div class="project-card">
-                <div class="project-image"><img src="science.svg" alt="Science Experiments"></div>
-                <h3>Level D Science</h3>
-                <p style="color: var(--text-dim);">Comprehensive Publication Layout for Educational Curriculum.</p>
-            </div>
-
-            <div class="project-card">
-                <div class="project-image"><img src="empire.svg" alt="Empire Rolloffs"></div>
-                <h3>Empire Rolloffs</h3>
-                <p style="color: var(--text-dim);">Identity and Brand development.</p>
-            </div>
-
-            <div class="project-card">
-                <div class="project-image"><img src="stprop.svg" alt="S.T. Properties Branding"></div>
-                <h3>S.T. Properties</h3>
-                <p style="color: var(--text-dim);">Residential & Commercial Real Estate iconography and visual brand strategy.</p>
-            </div>
-
-            <div class="project-card">
-                <div class="project-image"><img src="rjavier.svg" alt="JR. Javier Photography"></div>
-                <h3>R. Javier Photography</h3>
-                <p style="color: var(--text-dim);">Wordmark for an amateur photographer.</p>
-            </div>
-        </div>
-
-        <span class="section-label">Capabilities</span>
-        
-        <div class="about-grid">
-            <div class="about-item">
-                <h3>Publication Design</h3>
-                <p style="color: var(--text-dim);">Grid systems, typography, and layout for multi-page educational spreads.</p>
-            </div>
-            <div class="about-item">
-                <h3>Brand Strategy</h3>
-                <p style="color: var(--text-dim);">Visualizing brand values through scalable vector systems and logos.</p>
-            </div>
-            <div class="about-item">
-                <h3>Digital Assets</h3>
-                <p style="color: var(--text-dim);">Production-ready marketing materials and iconography for commercial use.</p>
-            </div>
-        </div>
-    </main>
-
-    <footer>
-        &copy; 2026 Yuong Phu. Designed with precision.
-    </footer>
-
-</body>
-</html>
+        /* --- WHITE SAAS BODY ---
