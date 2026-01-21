@@ -22,30 +22,32 @@
             line-height: 1.6;
         }
 
-        /* --- NAVIGATION --- */
-        nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 1.2rem 5%;
-            background: rgba(15, 17, 21, 0.95);
-            backdrop-filter: blur(10px);
-            position: sticky; top: 0; z-index: 100;
-            border-bottom: 1px solid #2d3139;
-        }
+      
+/* --- NAVIGATION --- */
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.8rem 5%; /* Slightly tighter padding for a cleaner nav */
+    background: rgba(15, 17, 21, 0.95);
+    backdrop-filter: blur(10px);
+    position: sticky; top: 0; z-index: 100;
+    border-bottom: 1px solid #2d3139;
+    height: 70px; /* Optional: Sets a fixed height for the whole bar */
+}
 
-        .logo-container {
-            display: flex;
-            align-items: center;
-            text-decoration: none;
-        }
+.logo-container {
+    display: flex;
+    align-items: center;
+    height: 100%;
+}
 
-        .nav-logo {
-            height: 35px; /* Adjust based on your logo design */
-            width: auto;
-            max-width: 100%
-            display: block;
-            transition: transform 0.3s ease;
+.nav-logo {
+    height: 40px; /* Sized up slightly from 35px since your logo is tall */
+    width: auto;
+    object-fit: contain; /* Ensures the logo stays within the 40px height */
+    transition: transform 0.3s ease;
+}
         }
 
         .nav-logo:hover {
@@ -241,6 +243,7 @@
 
 </body>
 </html>
+
 
 
 
