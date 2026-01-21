@@ -53,11 +53,7 @@
             transition: transform 0.3s ease;
         }
 
-        .nav-logo:hover {
-            transform: scale(1.05);
-        }
-
-        /* --- DARK HEADER SECTION --- */
+        /* --- DARK HERO --- */
         .header-section {
             background-color: var(--bg-dark);
             color: white;
@@ -74,19 +70,10 @@
         }
 
         .header-section h1 span { color: var(--accent-blue); }
-        
-        .header-section p {
-            color: #94a3b8;
-            max-width: 600px;
-            margin: 0 auto 40px auto;
-            font-size: 1.1rem;
-        }
+        .header-section p { color: #94a3b8; max-width: 600px; margin: 0 auto 40px auto; font-size: 1.1rem; }
 
-        /* --- WHITE SAAS BODY --- */
-        .content-container {
-            background-color: var(--bg-white);
-            padding: 80px 5%;
-        }
+        /* --- PROJECT GRID --- */
+        .content-container { background-color: var(--bg-white); padding: 80px 5%; }
 
         .section-label {
             display: inline-block;
@@ -112,9 +99,79 @@
             padding: 24px;
             transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
-            text-decoration: none;
-            color: inherit;
-            display: block;
+            cursor: pointer;
         }
 
-        .project-card:
+        .project-card:hover {
+            transform: translateY(-12px);
+            border-color: var(--accent-blue);
+            box-shadow: 0 20px 25px -5px rgba(135, 206, 235, 0.15);
+        }
+
+        .project-image-box {
+            width: 100%;
+            aspect-ratio: 16/9;
+            background: #f8fafc;
+            border-radius: 8px;
+            margin-bottom: 24px;
+            overflow: hidden;
+            border: 1px solid var(--border-light);
+        }
+
+        .project-image-box img { width: 100%; height: 100%; object-fit: cover; transition: 0.5s; }
+        .project-card:hover img { transform: scale(1.05); }
+
+        /* --- LIGHTBOX (MODAL) --- */
+        .lightbox {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: rgba(15, 17, 21, 0.98);
+            display: none; /* Hidden by default */
+            justify-content: center;
+            align-items: center;
+            z-index: 2000;
+            user-select: none;
+        }
+
+        .lightbox.active { display: flex; }
+
+        .lightbox-content {
+            max-width: 90%;
+            max-height: 80%;
+            position: relative;
+        }
+
+        .lightbox-content img {
+            width: 100%;
+            height: auto;
+            max-height: 80vh;
+            border-radius: 4px;
+            box-shadow: 0 0 30px rgba(0,0,0,0.5);
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: -50px; right: 0;
+            color: white; font-size: 2rem; cursor: pointer;
+        }
+
+        .nav-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            color: white;
+            font-size: 3rem;
+            cursor: pointer;
+            padding: 20px;
+            background: rgba(255,255,255,0.05);
+            border-radius: 50%;
+            transition: 0.3s;
+        }
+
+        .nav-arrow:hover { background: rgba(255,255,255,0.1); color: var(--accent-blue); }
+        .arrow-left { left: -100px; }
+        .arrow-right { right: -100px; }
+
+        /* --- FOOTER & BUTTONS --- */
+        .btn-blue { background-color: var(--accent-blue); color: var(--bg-dark); padding:
