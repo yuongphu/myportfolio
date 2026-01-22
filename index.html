@@ -46,13 +46,12 @@
         /* --- HERO SECTION WITH VISIBLE TEXTURE --- */
         .header-section {
             background-color: var(--bg-dark);
-            /* Increased opacity for grid (0.07) and higher contrast for grain */
             background-image: 
                 url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3BaseFilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/feTurbulence%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E"),
-                linear-gradient(rgba(255, 255, 255, 0.07) 1px, transparent 1px), 
-                linear-gradient(90deg, rgba(255, 255, 255, 0.07) 1px, transparent 1px);
+                linear-gradient(rgba(255, 255, 255, 0.1) 1px, transparent 1px), 
+                linear-gradient(90deg, rgba(255, 255, 255, 0.1) 1px, transparent 1px);
             background-size: auto, 50px 50px, 50px 50px;
-            background-blend-mode: soft-light; /* Changed from overlay for better visibility */
+            background-blend-mode: soft-light;
             color: white;
             padding: 100px 5% 30px 5%; 
             text-align: center;
@@ -137,6 +136,12 @@
             border-radius: 12px;
             padding: 24px;
             transition: var(--transition-standard);
+            cursor: pointer;
+        }
+
+        .project-card:hover { 
+            transform: translateY(-8px); 
+            border-color: var(--accent-blue);
         }
 
         .project-image-box { 
@@ -166,11 +171,24 @@
             padding: 40px;
             border: 1px solid var(--border-light);
             border-radius: 12px;
-            transition: var(--transition-standard);
         }
 
-        .skill-item h3 { margin-bottom: 12px; font-weight: 600; font-size: 1.2rem; }
-        .skill-item p { color: var(--text-dim); font-size: 0.95rem; }
+        /* --- LIGHTBOX (WHITE BACKGROUND) --- */
+        .lightbox {
+            position: fixed; inset: 0; background: #ffffff; 
+            display: none; justify-content: center; align-items: center; z-index: 2000;
+            opacity: 0; transition: opacity 0.4s ease;
+        }
+        .lightbox.active { display: flex; opacity: 1; }
+        .lightbox-content { width: 90%; height: 80vh; display: flex; justify-content: center; align-items: center; }
+        .lightbox-content img {
+            max-width: 100%; max-height: 100%; object-fit: contain;
+            background: white; padding: 40px;
+        }
+        .lightbox-close { position: fixed; top: 30px; right: 40px; font-size: 2.5rem; cursor: pointer; z-index: 2001; color: var(--text-dark); }
+        .nav-arrow { position: absolute; top: 50%; transform: translateY(-50%); padding: 40px; font-size: 3rem; cursor: pointer; z-index: 2005; color: var(--text-dark); }
+        .arrow-left { left: 20px; }
+        .arrow-right { right: 20px; }
 
         /* --- FOOTER --- */
         footer { 
@@ -182,13 +200,7 @@
 
         .social-links { display: flex; justify-content: center; gap: 30px; }
         .social-links a { 
-            color: var(--text-dark); 
-            text-decoration: none; 
-            font-weight: 600; 
-            font-size: 0.8rem; 
-            text-transform: uppercase; 
-            letter-spacing: 1px;
-            transition: var(--transition-standard);
+            color: var(--text-dark); text-decoration: none; font-weight: 600; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px;
         }
     </style>
 </head>
@@ -211,28 +223,26 @@
     <main class="content-container">
         <span class="section-label" id="work">Selected Work</span>
         <div class="project-grid">
-            <div class="project-card"><div class="project-image-box"><img src="science.svg" alt="Science"></div><h3>Level D Science</h3><p style="color: var(--text-dim);">Complex Educational Layout Design</p></div>
-            <div class="project-card"><div class="project-image-box"><img src="empire.svg" alt="Empire"></div><h3>Empire Rolloffs</h3><p style="color: var(--text-dim);">Identity & Brand Strategy</p></div>
-            <div class="project-card"><div class="project-image-box"><img src="stprop.svg" alt="STProp"></div><h3>S.T. Properties</h3><p style="color: var(--text-dim);">Real Estate Visual Systems</p></div>
-            <div class="project-card"><div class="project-image-box"><img src="rjavier.svg" alt="RJavier"></div><h3>R. Javier</h3><p style="color: var(--text-dim);">Typography & Custom Identity</p></div>
+            <div class="project-card" data-src="science.svg"><div class="project-image-box"><img src="science.svg" alt="Science"></div><h3>Level D Science</h3><p style="color: var(--text-dim);">Complex Educational Layout Design</p></div>
+            <div class="project-card" data-src="empire.svg"><div class="project-image-box"><img src="empire.svg" alt="Empire"></div><h3>Empire Rolloffs</h3><p style="color: var(--text-dim);">Identity & Brand Strategy</p></div>
+            <div class="project-card" data-src="stprop.svg"><div class="project-image-box"><img src="stprop.svg" alt="STProp"></div><h3>S.T. Properties</h3><p style="color: var(--text-dim);">Real Estate Visual Systems</p></div>
+            <div class="project-card" data-src="rjavier.svg"><div class="project-image-box"><img src="rjavier.svg" alt="RJavier"></div><h3>R. Javier</h3><p style="color: var(--text-dim);">Typography & Custom Identity</p></div>
         </div>
 
         <span class="section-label">Capabilities</span>
         <div class="skills-grid">
-            <div class="skill-item">
-                <h3>Publication Design</h3>
-                <p>Grid-based layouts for textbooks and reports where information hierarchy is paramount.</p>
-            </div>
-            <div class="skill-item">
-                <h3>Visual Identity</h3>
-                <p>Scalable logo systems and brand languages that maintain integrity across print and digital.</p>
-            </div>
-            <div class="skill-item">
-                <h3>Production</h3>
-                <p>Precise vector execution and print-ready technical specs for high-volume manufacturing.</p>
-            </div>
+            <div class="skill-item"><h3>Publication Design</h3><p>Grid-based layouts for textbooks and reports where information hierarchy is paramount.</p></div>
+            <div class="skill-item"><h3>Visual Identity</h3><p>Scalable logo systems and brand languages that maintain integrity across print and digital.</p></div>
+            <div class="skill-item"><h3>Production</h3><p>Precise vector execution and print-ready technical specs for high-volume manufacturing.</p></div>
         </div>
     </main>
+
+    <div class="lightbox" id="lightbox">
+        <span class="lightbox-close" id="closeBtn">&times;</span>
+        <div class="nav-arrow arrow-left" id="prevBtn">&#8249;</div>
+        <div class="lightbox-content"><img src="" id="lightbox-img"></div>
+        <div class="nav-arrow arrow-right" id="nextBtn">&#8250;</div>
+    </div>
 
     <footer>
         <div class="social-links">
@@ -243,5 +253,41 @@
         <p style="color: var(--text-dim); font-size: 0.8rem; margin-top: 30px;">&copy; 2026 Yuong Phu. All rights reserved.</p>
     </footer>
 
+    <script>
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightbox-img');
+        const cards = Array.from(document.querySelectorAll('.project-card[data-src]'));
+        const closeBtn = document.getElementById('closeBtn');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        let currentIndex = 0;
+
+        function showImage(index) {
+            currentIndex = index;
+            const src = cards[currentIndex].getAttribute('data-src');
+            lightboxImg.style.opacity = '0';
+            setTimeout(() => {
+                lightboxImg.src = src;
+                lightboxImg.style.opacity = '1';
+            }, 150);
+            lightbox.style.display = 'flex';
+            setTimeout(() => lightbox.classList.add('active'), 10);
+            document.body.style.overflow = 'hidden';
+        }
+
+        cards.forEach((card, index) => card.addEventListener('click', () => showImage(index)));
+        
+        const closeLightbox = () => {
+            lightbox.classList.remove('active');
+            setTimeout(() => lightbox.style.display = 'none', 400);
+            document.body.style.overflow = 'auto';
+        };
+
+        closeBtn.addEventListener('click', closeLightbox);
+        nextBtn.addEventListener('click', (e) => { e.stopPropagation(); currentIndex = (currentIndex + 1) % cards.length; showImage(currentIndex); });
+        prevBtn.addEventListener('click', (e) => { e.stopPropagation(); currentIndex = (currentIndex - 1 + cards.length) % cards.length; showImage(currentIndex); });
+        
+        lightbox.addEventListener('click', (e) => { if(e.target === lightbox) closeLightbox(); });
+    </script>
 </body>
 </html>
