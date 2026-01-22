@@ -43,13 +43,12 @@
 
         .nav-logo { height: 35px; width: auto; }
 
-        /* --- HERO SECTION (Ultra-Tight Bottom) --- */
+        /* --- HERO SECTION --- */
         .header-section {
             background-color: var(--bg-dark);
             background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3BaseFilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/feTurbulence%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
             background-blend-mode: overlay;
             color: white;
-            /* Top padding 100px, Bottom padding reduced by half to 30px */
             padding: 100px 5% 30px 5%; 
             text-align: center;
             display: flex;
@@ -68,25 +67,26 @@
             height: clamp(180px, 28vw, 280px); 
             width: auto;
             max-width: 95vw;
-            margin-bottom: 20px; /* Reduced gap between logo and text */
+            margin-bottom: 25px; 
         }
 
         .sub-header { 
             display: block; 
             color: var(--accent-blue); 
-            font-size: clamp(0.75rem, 1.8vw, 0.95rem); 
+            /* Increased size for better presence */
+            font-size: clamp(1rem, 2.2vw, 1.35rem); 
             font-weight: 400;
             font-variant: all-small-caps; 
-            letter-spacing: 0.55em; 
-            margin-right: -0.55em; 
-            line-height: 1.4;
+            letter-spacing: 0.6em; /* Slightly adjusted for larger size */
+            margin-right: -0.6em; 
+            line-height: 1.5;
             text-transform: uppercase;
         }
 
         .header-section p { 
             color: #94a3b8; 
             max-width: 580px; 
-            margin: 30px auto; 
+            margin: 35px auto; 
             font-size: 1.1rem; 
             font-weight: 300;
         }
@@ -100,7 +100,7 @@
             font-weight: 600; 
             transition: var(--transition-standard); 
             display: inline-block;
-            margin-bottom: 20px; /* Added slight buffer before the banner ends */
+            margin-bottom: 20px; 
         }
 
         /* --- CONTENT AREA --- */
