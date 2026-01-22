@@ -41,62 +41,56 @@
             height: 80px; 
         }
 
-        .nav-logo { height: 40px; width: auto; }
+        .nav-logo { height: 35px; width: auto; }
 
         /* --- HERO SECTION --- */
         .header-section {
             background-color: var(--bg-dark);
             color: white;
-            padding: clamp(100px, 15vh, 180px) 5%;
+            padding: clamp(120px, 18vh, 220px) 5%;
             text-align: center;
             display: flex;
             flex-direction: column;
             align-items: center;
         }
 
-        .brand-main {
+        .brand-container {
             display: flex;
+            flex-direction: column;
             align-items: center;
-            justify-content: center;
-            gap: clamp(15px, 3vw, 30px); 
-            margin-bottom: 5px;
+            width: fit-content;
         }
 
-        .header-logo {
-            height: clamp(2.5rem, 7vw, 5rem); /* Scaled up to feel more proportionate */
+        /* Large Main Logo */
+        .main-logo-img {
+            height: clamp(80px, 15vw, 140px); /* Significant presence */
             width: auto;
+            margin-bottom: 25px;
         }
 
-        .header-section h1 { 
-            font-size: clamp(2.5rem, 8vw, 5.5rem); 
-            font-weight: 500; /* Reverted from Bold/Medium to a cleaner weight */
-            letter-spacing: 0.05em; 
-            line-height: 1;
-            text-transform: uppercase;
-            white-space: nowrap;
-        }
-
-        .header-section .sub-header { 
+        /* Small Caps Sub-Header */
+        .sub-header { 
             display: block; 
             color: var(--accent-blue); 
-            font-size: clamp(0.7rem, 1.8vw, 1.15rem); 
-            font-weight: 300;
-            text-transform: uppercase;
-            letter-spacing: 0.88em; 
-            margin-right: -0.88em; 
-            margin-top: 20px;
+            font-size: clamp(0.75rem, 2vw, 1.1rem); 
+            font-weight: 400;
+            font-variant: all-small-caps; /* Professional Small Caps */
+            letter-spacing: 0.85em; 
+            margin-right: -0.85em; /* Optical alignment offset */
             width: 100%;
+            border-top: 1px solid rgba(135, 206, 235, 0.2); /* Subtle horizontal rule */
+            padding-top: 20px;
         }
 
         .header-section p { 
             color: #94a3b8; 
-            max-width: 600px; 
-            margin: 40px auto; 
+            max-width: 580px; 
+            margin: 45px auto; 
             font-size: 1.1rem; 
             font-weight: 300;
         }
 
-        /* --- MAIN CONTENT --- */
+        /* --- CONTENT AREA --- */
         .content-container { 
             max-width: 1400px;
             margin: 0 auto;
@@ -167,7 +161,6 @@
             transition: var(--transition-standard);
         }
 
-        .skill-item:hover { border-color: var(--accent-blue); background-color: #fcfdfe; }
         .skill-item h3 { margin-bottom: 12px; font-weight: 600; font-size: 1.2rem; }
         .skill-item p { color: var(--text-dim); font-size: 0.95rem; }
 
@@ -178,9 +171,6 @@
             border-top: 1px solid var(--border-light); 
             text-align: center;
         }
-
-        .footer-cta { margin-bottom: 50px; }
-        .footer-cta h2 { font-size: 2.2rem; margin-bottom: 20px; font-weight: 800; }
 
         .social-links { display: flex; justify-content: center; gap: 30px; margin-bottom: 40px; }
         .social-links a { 
@@ -193,7 +183,6 @@
             transition: var(--transition-standard);
         }
         .social-links a:hover { color: var(--accent-blue); }
-        .copyright { color: var(--text-dim); font-size: 0.8rem; border-top: 1px solid #eee; padding-top: 30px; }
 
         .btn-blue { 
             background-color: var(--accent-blue); color: var(--bg-dark); 
@@ -217,8 +206,7 @@
         .nav-arrow { position: absolute; top: 50%; transform: translateY(-50%); padding: 40px; font-size: 3rem; cursor: pointer; z-index: 2005; }
 
         @media (max-width: 768px) {
-            .brand-main { gap: 10px; }
-            .header-section .sub-header { letter-spacing: 0.35em; margin-right: -0.35em; }
+            .sub-header { letter-spacing: 0.4em; margin-right: -0.4em; }
             .nav-arrow { bottom: 20px; top: auto; transform: none; padding: 20px; }
         }
     </style>
@@ -226,16 +214,15 @@
 <body>
 
     <nav>
-        <img src="logo.svg" alt="Yuong Phu Logo" class="nav-logo">
+        <img src="mainlogo.svg" alt="Yuong Phu Logo" class="nav-logo">
         <a href="mailto:yuongphu@gmail.com" class="btn-blue" style="padding: 8px 16px; font-size: 0.8rem;">Contact</a>
     </nav>
 
     <header class="header-section">
-        <div class="brand-main">
-            <img src="logo.svg" alt="Logo" class="header-logo">
-            <h1>Yuong Phu</h1>
+        <div class="brand-container">
+            <img src="mainlogo.svg" alt="Yuong Phu" class="main-logo-img">
+            <span class="sub-header">Publication & Graphics Designer</span>
         </div>
-        <span class="sub-header">Publication & Graphics Designer</span>
         <p>Expertly structured visual systems for educational materials and corporate brand identities.</p>
         <a href="#work" class="btn-blue">View Portfolio</a>
     </header>
@@ -293,17 +280,13 @@
     </main>
 
     <footer>
-        <div class="footer-cta">
-            <h2>Let's work together.</h2>
-            <a href="mailto:yuongphu@gmail.com" class="btn-blue">Start a Conversation</a>
-        </div>
         <div class="social-links">
             <a href="#">LinkedIn</a>
             <a href="#">Behance</a>
             <a href="#">Instagram</a>
             <a href="#">Dribbble</a>
         </div>
-        <p class="copyright">&copy; 2026 Yuong Phu. All rights reserved.</p>
+        <p style="color: var(--text-dim); font-size: 0.8rem; margin-top: 30px;">&copy; 2026 Yuong Phu. All rights reserved.</p>
     </footer>
 
     <div class="lightbox" id="lightbox">
@@ -345,13 +328,6 @@
         closeBtn.addEventListener('click', closeLightbox);
         nextBtn.addEventListener('click', (e) => { e.stopPropagation(); currentIndex = (currentIndex + 1) % cards.length; showImage(currentIndex); });
         prevBtn.addEventListener('click', (e) => { e.stopPropagation(); currentIndex = (currentIndex - 1 + cards.length) % cards.length; showImage(currentIndex); });
-        
-        document.addEventListener('keydown', (e) => {
-            if (!lightbox.classList.contains('active')) return;
-            if (e.key === 'ArrowRight') nextBtn.click();
-            if (e.key === 'ArrowLeft') prevBtn.click();
-            if (e.key === 'Escape') closeLightbox();
-        });
     </script>
 </body>
 </html>
