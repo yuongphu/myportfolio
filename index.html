@@ -14,6 +14,10 @@
             --text-dim: #64748b;
             --border-light: #f1f5f9;
             --transition-standard: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            /* Shared Texture Variable */
+            --header-texture: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3BaseFilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/feTurbulence%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E"),
+                linear-gradient(rgba(255, 255, 255, 0.1) 1px, transparent 1px), 
+                linear-gradient(90deg, rgba(255, 255, 255, 0.1) 1px, transparent 1px);
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -27,22 +31,30 @@
             -webkit-font-smoothing: antialiased;
         }
 
-        /* --- NAVIGATION --- */
+        /* --- NAVIGATION (Styled to match Header) --- */
         nav {
             display: flex;
             justify-content: space-between;
             align-items: center;
             padding: 0 5%;
-            background: var(--bg-dark);
+            background-color: var(--bg-dark);
+            background-image: var(--header-texture);
+            background-size: auto, 50px 50px, 50px 50px;
+            background-blend-mode: soft-light;
             position: sticky; 
             top: 0; 
             z-index: 100;
-            border-bottom: 1px solid rgba(255,255,255,0.1);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
             height: 80px; 
             transition: var(--transition-standard);
         }
 
-        /* The hidden-by-default wordmark */
+        /* Glassmorphism effect on scroll */
+        nav.scrolled {
+            background-color: rgba(15, 17, 21, 0.95);
+            backdrop-filter: blur(10px);
+        }
+
         .nav-brand {
             text-decoration: none; 
             color: white; 
@@ -55,20 +67,16 @@
             pointer-events: none;
         }
 
-        /* State when scrolled */
         nav.scrolled .nav-brand {
             opacity: 1;
             transform: translateY(0);
             pointer-events: auto;
         }
 
-        /* --- HERO SECTION WITH VISIBLE TEXTURE --- */
+        /* --- HERO SECTION --- */
         .header-section {
             background-color: var(--bg-dark);
-            background-image: 
-                url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3BaseFilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/feTurbulence%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E"),
-                linear-gradient(rgba(255, 255, 255, 0.1) 1px, transparent 1px), 
-                linear-gradient(90deg, rgba(255, 255, 255, 0.1) 1px, transparent 1px);
+            background-image: var(--header-texture);
             background-size: auto, 50px 50px, 50px 50px;
             background-blend-mode: soft-light;
             color: white;
@@ -77,6 +85,8 @@
             display: flex;
             flex-direction: column;
             align-items: center;
+            /* Remove top border if it exists to make it seamless with nav */
+            border-top: none; 
         }
 
         .brand-container {
@@ -183,8 +193,6 @@
         .lightbox-content img { max-width: 100%; max-height: 100%; object-fit: contain; background: white; padding: 40px; }
         .lightbox-close { position: fixed; top: 30px; right: 40px; font-size: 2.5rem; cursor: pointer; z-index: 2001; color: var(--text-dark); }
         .nav-arrow { position: absolute; top: 50%; transform: translateY(-50%); padding: 40px; font-size: 3rem; cursor: pointer; z-index: 2005; color: var(--text-dark); }
-        .arrow-left { left: 20px; }
-        .arrow-right { right: 20px; }
 
         footer { padding: 60px 5% 40px 5%; background-color: #fcfdfe; border-top: 1px solid var(--border-light); text-align: center; }
         .social-links { display: flex; justify-content: center; gap: 30px; }
@@ -243,12 +251,11 @@
     </footer>
 
     <script>
-        // STICKY NAV REVEAL
         const nav = document.getElementById('mainNav');
         const hero = document.getElementById('hero');
 
         window.addEventListener('scroll', () => {
-            if (window.scrollY > hero.offsetHeight - 80) {
+            if (window.scrollY > 50) { // Starts effect early for a smoother feel
                 nav.classList.add('scrolled');
             } else {
                 nav.classList.remove('scrolled');
@@ -267,11 +274,7 @@
         function showImage(index) {
             currentIndex = index;
             const src = cards[currentIndex].getAttribute('data-src');
-            lightboxImg.style.opacity = '0';
-            setTimeout(() => {
-                lightboxImg.src = src;
-                lightboxImg.style.opacity = '1';
-            }, 150);
+            lightboxImg.src = src;
             lightbox.style.display = 'flex';
             setTimeout(() => lightbox.classList.add('active'), 10);
             document.body.style.overflow = 'hidden';
