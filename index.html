@@ -43,14 +43,13 @@
 
         .nav-logo { height: 35px; width: auto; }
 
-        /* --- HERO SECTION (Optimized Height) --- */
+        /* --- HERO SECTION --- */
         .header-section {
             background-color: var(--bg-dark);
             background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3BaseFilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/feTurbulence%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
             background-blend-mode: overlay;
             color: white;
-            /* Reduced padding to shorten the black box height */
-            padding: clamp(60px, 10vh, 120px) 5%;
+            padding: clamp(60px, 10vh, 100px) 5%;
             text-align: center;
             display: flex;
             flex-direction: column;
@@ -64,30 +63,31 @@
             width: fit-content;
         }
 
-        /* Main logo significantly resized to be larger */
+        /* Large Hero Logo */
         .main-logo-img {
-            height: clamp(100px, 18vw, 180px); 
+            height: clamp(140px, 22vw, 240px); /* Increased significantly */
             width: auto;
-            margin-bottom: 25px;
+            max-width: 90vw;
+            margin-bottom: 30px;
         }
 
         .sub-header { 
             display: block; 
             color: var(--accent-blue); 
-            font-size: clamp(0.9rem, 2.2vw, 1.4rem); 
+            font-size: clamp(1rem, 2.5vw, 1.5rem); /* Proportional bump */
             font-weight: 400;
             font-variant: all-small-caps; 
             letter-spacing: 0.8em; 
             margin-right: -0.8em; 
-            line-height: 1.6;
+            line-height: 1.5;
             text-transform: uppercase;
         }
 
         .header-section p { 
             color: #94a3b8; 
-            max-width: 580px; 
-            margin: 35px auto; 
-            font-size: 1.15rem; 
+            max-width: 600px; 
+            margin: 40px auto; 
+            font-size: 1.2rem; 
             font-weight: 300;
         }
 
@@ -144,7 +144,6 @@
         }
         
         .project-image-box img { width: 85%; height: 85%; object-fit: contain; }
-        .placeholder-box { background: #f9fafb; color: #cbd5e1; font-size: 0.75rem; font-weight: 600; letter-spacing: 2px; }
 
         /* --- CAPABILITIES --- */
         .skills-grid {
@@ -161,10 +160,13 @@
             transition: var(--transition-standard);
         }
 
-        .skill-item h3 { margin-bottom: 12px; font-weight: 600; font-size: 1.2rem; }
-        .skill-item p { color: var(--text-dim); font-size: 0.95rem; }
+        /* --- BUTTONS & FOOTER --- */
+        .btn-blue { 
+            background-color: var(--accent-blue); color: var(--bg-dark); 
+            padding: 14px 28px; border-radius: 6px; text-decoration: none; 
+            font-weight: 600; transition: var(--transition-standard); display: inline-block;
+        }
 
-        /* --- FOOTER --- */
         footer { 
             padding: 80px 5% 40px 5%; 
             background-color: #fcfdfe; 
@@ -174,20 +176,7 @@
 
         .social-links { display: flex; justify-content: center; gap: 30px; margin-bottom: 40px; }
         .social-links a { 
-            color: var(--text-dark); 
-            text-decoration: none; 
-            font-weight: 600; 
-            font-size: 0.8rem; 
-            text-transform: uppercase; 
-            letter-spacing: 1px;
-            transition: var(--transition-standard);
-        }
-        .social-links a:hover { color: var(--accent-blue); }
-
-        .btn-blue { 
-            background-color: var(--accent-blue); color: var(--bg-dark); 
-            padding: 14px 28px; border-radius: 6px; text-decoration: none; 
-            font-weight: 600; transition: var(--transition-standard); display: inline-block;
+            color: var(--text-dark); text-decoration: none; font-weight: 600; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px; transition: var(--transition-standard);
         }
 
         /* --- LIGHTBOX --- */
@@ -198,10 +187,7 @@
         }
         .lightbox.active { display: flex; opacity: 1; }
         .lightbox-content { width: 90%; height: 80vh; display: flex; justify-content: center; align-items: center; }
-        .lightbox-content img {
-            max-width: 100%; max-height: 100%; object-fit: contain;
-            background: white; padding: 40px; box-shadow: 0 40px 100px rgba(0,0,0,0.1);
-        }
+        .lightbox-content img { max-width: 100%; max-height: 100%; object-fit: contain; background: white; padding: 40px; box-shadow: 0 40px 100px rgba(0,0,0,0.1); }
         .lightbox-close { position: fixed; top: 30px; right: 40px; font-size: 2.5rem; cursor: pointer; z-index: 2001; }
         .nav-arrow { position: absolute; top: 50%; transform: translateY(-50%); padding: 40px; font-size: 3rem; cursor: pointer; z-index: 2005; }
 
@@ -249,16 +235,6 @@
                 <div class="project-image-box"><img src="rjavier.svg" alt="R. Javier Photography"></div>
                 <h3>R. Javier</h3>
                 <p style="color: var(--text-dim);">Typography & Custom Identity</p>
-            </div>
-            <div class="project-card">
-                <div class="project-image-box placeholder-box">COMING SOON</div>
-                <h3>Project 1</h3>
-                <p style="color: var(--text-dim);">Publication System</p>
-            </div>
-            <div class="project-card">
-                <div class="project-image-box placeholder-box">COMING SOON</div>
-                <h3>Project 2</h3>
-                <p style="color: var(--text-dim);">Brand Identity</p>
             </div>
         </div>
 
