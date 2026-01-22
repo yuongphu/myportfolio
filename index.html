@@ -43,12 +43,18 @@
 
         .nav-logo { height: 35px; width: auto; }
 
-        /* --- HERO SECTION --- */
+        /* --- HERO SECTION WITH MODERN TEXTURE --- */
         .header-section {
             background-color: var(--bg-dark);
-            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3BaseFilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/feTurbulence%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+            /* Layer 1: Grainy Paper Texture | Layer 2: Bauhaus Technical Grid */
+            background-image: 
+                url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3BaseFilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/feTurbulence%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E"),
+                linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px), 
+                linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+            background-size: auto, 60px 60px, 60px 60px;
             background-blend-mode: overlay;
             color: white;
+            /* Tightened bottom padding to reduce gap under the button */
             padding: 100px 5% 30px 5%; 
             text-align: center;
             display: flex;
@@ -63,6 +69,7 @@
             width: fit-content;
         }
 
+        /* Large Hero Logo */
         .main-logo-img {
             height: clamp(180px, 28vw, 280px); 
             width: auto;
@@ -73,11 +80,10 @@
         .sub-header { 
             display: block; 
             color: var(--accent-blue); 
-            /* Increased size for better presence */
             font-size: clamp(1rem, 2.2vw, 1.35rem); 
             font-weight: 400;
             font-variant: all-small-caps; 
-            letter-spacing: 0.6em; /* Slightly adjusted for larger size */
+            letter-spacing: 0.6em; 
             margin-right: -0.6em; 
             line-height: 1.5;
             text-transform: uppercase;
@@ -91,6 +97,7 @@
             font-weight: 300;
         }
 
+        /* --- BUTTONS --- */
         .btn-blue { 
             background-color: var(--accent-blue); 
             color: var(--bg-dark); 
@@ -101,6 +108,12 @@
             transition: var(--transition-standard); 
             display: inline-block;
             margin-bottom: 20px; 
+        }
+
+        .btn-blue:hover {
+            background-color: #b0e2f5;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(135, 206, 235, 0.2);
         }
 
         /* --- CONTENT AREA --- */
@@ -120,6 +133,7 @@
             margin-bottom: 40px; 
         }
 
+        /* --- PROJECT GRID --- */
         .project-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
@@ -150,6 +164,7 @@
         
         .project-image-box img { width: 85%; height: 85%; object-fit: contain; }
 
+        /* --- FOOTER --- */
         footer { 
             padding: 60px 5% 40px 5%; 
             background-color: #fcfdfe; 
@@ -159,7 +174,18 @@
 
         .social-links { display: flex; justify-content: center; gap: 30px; }
         .social-links a { 
-            color: var(--text-dark); text-decoration: none; font-weight: 600; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px;
+            color: var(--text-dark); 
+            text-decoration: none; 
+            font-weight: 600; 
+            font-size: 0.8rem; 
+            text-transform: uppercase; 
+            letter-spacing: 1px;
+            transition: var(--transition-standard);
+        }
+        .social-links a:hover { color: var(--accent-blue); }
+
+        @media (max-width: 768px) {
+            .sub-header { letter-spacing: 0.4em; margin-right: -0.4em; }
         }
     </style>
 </head>
@@ -182,10 +208,26 @@
     <main class="content-container">
         <span class="section-label" id="work">Selected Work</span>
         <div class="project-grid">
-            <div class="project-card"><div class="project-image-box"><img src="science.svg" alt="Project"></div><h3>Level D Science</h3></div>
-            <div class="project-card"><div class="project-image-box"><img src="empire.svg" alt="Project"></div><h3>Empire Rolloffs</h3></div>
-            <div class="project-card"><div class="project-image-box"><img src="stprop.svg" alt="Project"></div><h3>S.T. Properties</h3></div>
-            <div class="project-card"><div class="project-image-box"><img src="rjavier.svg" alt="Project"></div><h3>R. Javier</h3></div>
+            <div class="project-card">
+                <div class="project-image-box"><img src="science.svg" alt="Level D Science"></div>
+                <h3>Level D Science</h3>
+                <p style="color: var(--text-dim);">Complex Educational Layout Design</p>
+            </div>
+            <div class="project-card">
+                <div class="project-image-box"><img src="empire.svg" alt="Empire Rolloffs"></div>
+                <h3>Empire Rolloffs</h3>
+                <p style="color: var(--text-dim);">Identity & Brand Strategy</p>
+            </div>
+            <div class="project-card">
+                <div class="project-image-box"><img src="stprop.svg" alt="S.T. Properties"></div>
+                <h3>S.T. Properties</h3>
+                <p style="color: var(--text-dim);">Real Estate Visual Systems</p>
+            </div>
+            <div class="project-card">
+                <div class="project-image-box"><img src="rjavier.svg" alt="R. Javier Photography"></div>
+                <h3>R. Javier</h3>
+                <p style="color: var(--text-dim);">Typography & Custom Identity</p>
+            </div>
         </div>
     </main>
 
