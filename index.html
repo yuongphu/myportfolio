@@ -43,13 +43,14 @@
 
         .nav-logo { height: 35px; width: auto; }
 
-        /* --- HERO SECTION --- */
+        /* --- HERO SECTION (Optimized Height) --- */
         .header-section {
             background-color: var(--bg-dark);
             background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3BaseFilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/feTurbulence%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
             background-blend-mode: overlay;
             color: white;
-            padding: clamp(100px, 15vh, 180px) 5%;
+            /* Reduced padding to shorten the black box height */
+            padding: clamp(60px, 10vh, 120px) 5%;
             text-align: center;
             display: flex;
             flex-direction: column;
@@ -63,30 +64,30 @@
             width: fit-content;
         }
 
-        /* Resized logo to work with the two-line text block */
+        /* Main logo significantly resized to be larger */
         .main-logo-img {
-            height: clamp(50px, 8vw, 70px); 
+            height: clamp(100px, 18vw, 180px); 
             width: auto;
-            margin-bottom: 20px;
+            margin-bottom: 25px;
         }
 
         .sub-header { 
             display: block; 
             color: var(--accent-blue); 
-            font-size: clamp(0.8rem, 2vw, 1.2rem); 
+            font-size: clamp(0.9rem, 2.2vw, 1.4rem); 
             font-weight: 400;
             font-variant: all-small-caps; 
-            letter-spacing: 0.7em; 
-            margin-right: -0.7em; 
-            line-height: 1.8; /* Added spacing for the text break */
+            letter-spacing: 0.8em; 
+            margin-right: -0.8em; 
+            line-height: 1.6;
             text-transform: uppercase;
         }
 
         .header-section p { 
             color: #94a3b8; 
             max-width: 580px; 
-            margin: 40px auto; 
-            font-size: 1.1rem; 
+            margin: 35px auto; 
+            font-size: 1.15rem; 
             font-weight: 300;
         }
 
@@ -107,7 +108,6 @@
             margin-bottom: 40px; 
         }
 
-        /* --- PROJECT GRID --- */
         .project-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
