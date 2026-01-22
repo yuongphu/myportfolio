@@ -43,14 +43,14 @@
 
         .nav-logo { height: 35px; width: auto; }
 
-        /* --- HERO SECTION (Tightened Crop) --- */
+        /* --- HERO SECTION (Ultra-Tight Bottom) --- */
         .header-section {
             background-color: var(--bg-dark);
             background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3BaseFilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/feTurbulence%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
             background-blend-mode: overlay;
             color: white;
-            /* Top padding remains for air, Bottom padding tightened to button */
-            padding: clamp(80px, 12vh, 120px) 5% 60px 5%; 
+            /* Top padding 100px, Bottom padding reduced by half to 30px */
+            padding: 100px 5% 30px 5%; 
             text-align: center;
             display: flex;
             flex-direction: column;
@@ -64,21 +64,20 @@
             width: fit-content;
         }
 
-        /* Large Hero Logo - Increased again */
         .main-logo-img {
             height: clamp(180px, 28vw, 280px); 
             width: auto;
             max-width: 95vw;
-            margin-bottom: 25px;
+            margin-bottom: 20px; /* Reduced gap between logo and text */
         }
 
         .sub-header { 
             display: block; 
             color: var(--accent-blue); 
-            font-size: clamp(0.75rem, 1.8vw, 1rem); /* Decreased size */
+            font-size: clamp(0.75rem, 1.8vw, 0.95rem); 
             font-weight: 400;
             font-variant: all-small-caps; 
-            letter-spacing: 0.55em; /* Decreased kerning */
+            letter-spacing: 0.55em; 
             margin-right: -0.55em; 
             line-height: 1.4;
             text-transform: uppercase;
@@ -92,7 +91,6 @@
             font-weight: 300;
         }
 
-        /* --- BUTTONS --- */
         .btn-blue { 
             background-color: var(--accent-blue); 
             color: var(--bg-dark); 
@@ -102,13 +100,14 @@
             font-weight: 600; 
             transition: var(--transition-standard); 
             display: inline-block;
+            margin-bottom: 20px; /* Added slight buffer before the banner ends */
         }
 
         /* --- CONTENT AREA --- */
         .content-container { 
             max-width: 1400px;
             margin: 0 auto;
-            padding: 80px 5%; 
+            padding: 60px 5%; 
         }
         
         .section-label { 
@@ -151,7 +150,6 @@
         
         .project-image-box img { width: 85%; height: 85%; object-fit: contain; }
 
-        /* --- FOOTER --- */
         footer { 
             padding: 60px 5% 40px 5%; 
             background-color: #fcfdfe; 
@@ -169,7 +167,7 @@
 
     <nav>
         <img src="logo.svg" alt="Yuong Phu Logo" class="nav-logo">
-        <a href="mailto:yuongphu@gmail.com" class="btn-blue" style="padding: 8px 16px; font-size: 0.8rem;">Contact</a>
+        <a href="mailto:yuongphu@gmail.com" class="btn-blue" style="padding: 8px 16px; font-size: 0.8rem; margin-bottom: 0;">Contact</a>
     </nav>
 
     <header class="header-section">
