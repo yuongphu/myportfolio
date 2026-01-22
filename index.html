@@ -13,7 +13,7 @@
             --text-dark: #111827;
             --text-dim: #64748b;
             --border-light: #f1f5f9;
-            --transition-standard: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            --transition-standard: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -39,9 +39,28 @@
             z-index: 100;
             border-bottom: 1px solid rgba(255,255,255,0.1);
             height: 80px; 
+            transition: var(--transition-standard);
         }
 
-        .nav-logo { height: 35px; width: auto; }
+        /* The hidden-by-default wordmark */
+        .nav-brand {
+            text-decoration: none; 
+            color: white; 
+            font-weight: 800; 
+            font-size: 1.1rem; 
+            letter-spacing: -0.02em;
+            opacity: 0;
+            transform: translateY(10px);
+            transition: var(--transition-standard);
+            pointer-events: none;
+        }
+
+        /* State when scrolled */
+        nav.scrolled .nav-brand {
+            opacity: 1;
+            transform: translateY(0);
+            pointer-events: auto;
+        }
 
         /* --- HERO SECTION WITH VISIBLE TEXTURE --- */
         .header-section {
@@ -139,41 +158,21 @@
             cursor: pointer;
         }
 
-        .project-card:hover { 
-            transform: translateY(-8px); 
-            border-color: var(--accent-blue);
-        }
+        .project-card:hover { transform: translateY(-8px); border-color: var(--accent-blue); }
 
         .project-image-box { 
-            width: 100%; 
-            aspect-ratio: 16/9;
-            background: #ffffff; 
-            border-radius: 6px; 
-            margin-bottom: 20px; 
-            overflow: hidden; 
-            border: 1px solid #f8fafc;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            width: 100%; aspect-ratio: 16/9; background: #ffffff; 
+            border-radius: 6px; margin-bottom: 20px; overflow: hidden; 
+            border: 1px solid #f8fafc; display: flex; align-items: center; justify-content: center;
         }
         
         .project-image-box img { width: 85%; height: 85%; object-fit: contain; }
 
-        /* --- SKILLS SECTION --- */
-        .skills-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 1.5rem;
-            margin-bottom: 100px;
-        }
+        /* --- SKILLS --- */
+        .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; margin-bottom: 100px; }
+        .skill-item { padding: 40px; border: 1px solid var(--border-light); border-radius: 12px; }
 
-        .skill-item {
-            padding: 40px;
-            border: 1px solid var(--border-light);
-            border-radius: 12px;
-        }
-
-        /* --- LIGHTBOX (WHITE BACKGROUND) --- */
+        /* --- LIGHTBOX --- */
         .lightbox {
             position: fixed; inset: 0; background: #ffffff; 
             display: none; justify-content: center; align-items: center; z-index: 2000;
@@ -181,37 +180,27 @@
         }
         .lightbox.active { display: flex; opacity: 1; }
         .lightbox-content { width: 90%; height: 80vh; display: flex; justify-content: center; align-items: center; }
-        .lightbox-content img {
-            max-width: 100%; max-height: 100%; object-fit: contain;
-            background: white; padding: 40px;
-        }
+        .lightbox-content img { max-width: 100%; max-height: 100%; object-fit: contain; background: white; padding: 40px; }
         .lightbox-close { position: fixed; top: 30px; right: 40px; font-size: 2.5rem; cursor: pointer; z-index: 2001; color: var(--text-dark); }
         .nav-arrow { position: absolute; top: 50%; transform: translateY(-50%); padding: 40px; font-size: 3rem; cursor: pointer; z-index: 2005; color: var(--text-dark); }
         .arrow-left { left: 20px; }
         .arrow-right { right: 20px; }
 
-        /* --- FOOTER --- */
-        footer { 
-            padding: 60px 5% 40px 5%; 
-            background-color: #fcfdfe; 
-            border-top: 1px solid var(--border-light); 
-            text-align: center;
-        }
-
+        footer { padding: 60px 5% 40px 5%; background-color: #fcfdfe; border-top: 1px solid var(--border-light); text-align: center; }
         .social-links { display: flex; justify-content: center; gap: 30px; }
-        .social-links a { 
-            color: var(--text-dark); text-decoration: none; font-weight: 600; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px;
-        }
+        .social-links a { color: var(--text-dark); text-decoration: none; font-weight: 600; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px; }
+
+        @media (max-width: 768px) { .sub-header { letter-spacing: 0.4em; margin-right: -0.4em; } }
     </style>
 </head>
 <body>
 
-    <nav>
-        <img src="logo.svg" alt="Yuong Phu Logo" class="nav-logo">
+    <nav id="mainNav">
+        <a href="#" class="nav-brand">YUONG PHU</a>
         <a href="mailto:yuongphu@gmail.com" class="btn-blue" style="padding: 8px 16px; font-size: 0.8rem; margin-bottom: 0;">Contact</a>
     </nav>
 
-    <header class="header-section">
+    <header class="header-section" id="hero">
         <div class="brand-container">
             <img src="mainlogo.svg" alt="Yuong Phu" class="main-logo-img">
             <span class="sub-header">Publication &<br>Graphics Designer</span>
@@ -254,6 +243,19 @@
     </footer>
 
     <script>
+        // STICKY NAV REVEAL
+        const nav = document.getElementById('mainNav');
+        const hero = document.getElementById('hero');
+
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > hero.offsetHeight - 80) {
+                nav.classList.add('scrolled');
+            } else {
+                nav.classList.remove('scrolled');
+            }
+        });
+
+        // LIGHTBOX LOGIC
         const lightbox = document.getElementById('lightbox');
         const lightboxImg = document.getElementById('lightbox-img');
         const cards = Array.from(document.querySelectorAll('.project-card[data-src]'));
@@ -276,7 +278,6 @@
         }
 
         cards.forEach((card, index) => card.addEventListener('click', () => showImage(index)));
-        
         const closeLightbox = () => {
             lightbox.classList.remove('active');
             setTimeout(() => lightbox.style.display = 'none', 400);
@@ -286,7 +287,6 @@
         closeBtn.addEventListener('click', closeLightbox);
         nextBtn.addEventListener('click', (e) => { e.stopPropagation(); currentIndex = (currentIndex + 1) % cards.length; showImage(currentIndex); });
         prevBtn.addEventListener('click', (e) => { e.stopPropagation(); currentIndex = (currentIndex - 1 + cards.length) % cards.length; showImage(currentIndex); });
-        
         lightbox.addEventListener('click', (e) => { if(e.target === lightbox) closeLightbox(); });
     </script>
 </body>
